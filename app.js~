@@ -53,8 +53,6 @@ app.use(
 
 
 
-
-
 app.get('/', routes.index);
 app.get('/customers', customers.list);
 app.get('/customers/add', customers.add);

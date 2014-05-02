@@ -13,7 +13,7 @@ var customers = require('./routes/customers');
 var app = express();
 
 var connection  = require('express-myconnection'); 
-var mysql = require('mysql')
+var mysql = require('mysql');
 
 // all environments
 app.set('port', process.env.PORT || 4300);
