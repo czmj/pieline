@@ -45,7 +45,7 @@ app.use(
         user: 'root',
         password : '',
         port : 3306, //port mysql
-        database:'nodejs'
+        database:'db1'
 
     },'pool') //or single
 
