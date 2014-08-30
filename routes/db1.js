@@ -25,7 +25,7 @@ exports.list = function(req, res){
 
 
 exports.add = function(req, res){
-  res.render('add_customer',{page_title:"Add Customers - Node.js"});
+  res.render('add_media',{page_title:"Add Media - Node.js"});
 };
 
 exports.edit = function(req, res){
@@ -34,13 +34,13 @@ exports.edit = function(req, res){
     
     req.getConnection(function(err,connection){
        
-        var query = connection.query('SELECT * FROM customer WHERE id = ?',[id],function(err,rows)
+        var query = connection.query('SELECT * FROM db1 WHERE id = ?',[id],function(err,rows)
         {
             
             if(err)
                 console.log("Error Selecting : %s ",err );
      
-            res.render('edit_customer',{page_title:"Edit Customers - Node.js",data:rows});
+            res.render('edit_media',{page_title:"Edit Media - Node.js",data:rows});
                 
            
          });
@@ -65,13 +65,13 @@ exports.save = function(req,res){
         
         };
         
-        var query = connection.query("INSERT INTO customer set ? ",data, function(err, rows)
+        var query = connection.query("INSERT INTO db1 set ? ",data, function(err, rows)
         {
   
           if (err)
               console.log("Error inserting : %s ",err );
          
-          res.redirect('/customers');
+          res.redirect('/db1');
           
         });
         
@@ -102,7 +102,7 @@ exports.save_edit = function(req,res){
           if (err)
               console.log("Error Updating : %s ",err );
          
-          res.redirect('/customers');
+          res.redirect('/db1');
           
         });
     

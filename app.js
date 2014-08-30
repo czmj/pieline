@@ -55,13 +55,11 @@ app.use(
 
 app.get('/', routes.index);
 app.get('/db1', db1.list);
-/*app.get('/db1/add', db1.add);
+app.get('/db1/add', db1.add);
 app.post('/db1/add', db1.save);
 app.get('/db1/delete/:id', db1.delete_customer);
 app.get('/db1/edit/:id', db1.edit);
 app.post('/db1/edit/:id',db1.save_edit);
-*/
-
 app.use(app.router);
 
 http.createServer(app).listen(app.get('port'), function(){
