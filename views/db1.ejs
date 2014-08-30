@@ -20,15 +20,15 @@
                  for(var i = 0;i < data.length;i++) { %>
                  
                 <tr>
-                    <td><%=(i+1)%></td>
+                    <td><%=data[i].vidid%></td>
                     <td><%=data[i].title%></td>
                     <td><%=data[i].owner%></td>
                     <td><%=data[i].location%></td>
                     <td><%=data[i].type%></td>
                     <td>
-                        <a class="a-inside edit" href="../db1/edit/<%=data[i].id%>">Edit</a>
+                        <a class="a-inside edit" href="../db1/edit/<%=data[i].vidid%>">Edit</a>
                        
-                        <a class="a-inside delete" href="../db1/delete/<%=data[i].id%>">Delete</a>
+                        <a class="a-inside delete" href="../db1/delete/<%=data[i].vidid%>">Delete</a>
                        
                     </td>
                 </tr>

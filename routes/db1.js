@@ -30,11 +30,11 @@ exports.add = function(req, res){
 
 exports.edit = function(req, res){
     
-    var id = req.params.id;
+    var vidid = req.params.vidid;
     
     req.getConnection(function(err,connection){
        
-        var query = connection.query('SELECT * FROM db1 WHERE id = ?',[id],function(err,rows)
+        var query = connection.query('SELECT * FROM db1 WHERE vidid = ?',[vidid],function(err,rows)
         {
             
             if(err)
@@ -83,7 +83,7 @@ exports.save = function(req,res){
 exports.save_edit = function(req,res){
     
     var input = JSON.parse(JSON.stringify(req.body));
-    var id = req.params.id;
+    var vidid = req.params.vidid;
     
     req.getConnection(function (err, connection) {
         
@@ -96,7 +96,7 @@ exports.save_edit = function(req,res){
         
         };
         
-        connection.query("UPDATE customer set ? WHERE id = ? ",[data,id], function(err, rows)
+        connection.query("UPDATE customer set ? WHERE vidid = ? ",[data,vidid], function(err, rows)
         {
   
           if (err)
@@ -112,11 +112,11 @@ exports.save_edit = function(req,res){
 
 exports.delete_customer = function(req,res){
           
-     var id = req.params.id;
+     var vidid = req.params.vidid;
     
      req.getConnection(function (err, connection) {
         
-        connection.query("DELETE FROM customer  WHERE id = ? ",[id], function(err, rows)
+        connection.query("DELETE FROM customer  WHERE vidid = ? ",[vidid], function(err, rows)
         {
             
              if(err)
