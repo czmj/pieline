@@ -8,8 +8,8 @@ var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 
-//load customers route
-var customers = require('./routes/db1'); 
+//load db1 route
+var db1 = require('./routes/db1'); 
 var app = express();
 
 var connection  = require('express-myconnection'); 
@@ -54,12 +54,12 @@ app.use(
 
 
 app.get('/', routes.index);
-app.get('/customers', customers.list);
-app.get('/customers/add', customers.add);
-app.post('/customers/add', customers.save);
-app.get('/customers/delete/:id', customers.delete_customer);
-app.get('/customers/edit/:id', customers.edit);
-app.post('/customers/edit/:id',customers.save_edit);
+app.get('/db1', db1.list);
+app.get('/db1/add', db1.add);
+app.post('/db1/add', db1.save);
+app.get('/db1/delete/:id', db1.delete_customer);
+app.get('/db1/edit/:id', db1.edit);
+app.post('/db1/edit/:id',db1.save_edit);
 
 
 app.use(app.router);
