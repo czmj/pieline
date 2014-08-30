@@ -8,10 +8,10 @@
             <table border="1" cellpadding="7" cellspacing="7">
                 <tr>
                     <th width="50px">No</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Phone</th>
-                    <th>Email</th>
+                    <th>Title</th>
+                    <th>Owner</th>
+                    <th>Location</th>
+                    <th>Type</th>
                     <th width="120px">Action</th>
                 </tr>
                                
@@ -21,10 +21,10 @@
                  
                 <tr>
                     <td><%=(i+1)%></td>
-                    <td><%=data[i].name%></td>
-                    <td><%=data[i].address%></td>
-                    <td><%=data[i].phone%></td>
-                    <td><%=data[i].email%></td>
+                    <td><%=data[i].title%></td>
+                    <td><%=data[i].owner%></td>
+                    <td><%=data[i].location%></td>
+                    <td><%=data[i].type%></td>
                     <td>
                         <a class="a-inside edit" href="../customers/edit/<%=data[i].id%>">Edit</a>
                        
