@@ -9,7 +9,7 @@ var http = require('http');
 var path = require('path');
 
 //load customers route
-var customers = require('./routes/customers'); 
+var customers = require('./routes/db1'); 
 var app = express();
 
 var connection  = require('express-myconnection'); 
@@ -41,10 +41,10 @@ app.use(
     
     connection(mysql,{
         
-        host: 'localhost',
-        user: 'root',
-        password : '',
-        port : 3306, //port mysql
+  host     : 'localhost',                                                       
+  user     : 'root',                                                            
+  password : '3degUB7JxZa',                                                     
+       port : 3306, //port mysql
         database:'db1'
 
     },'pool') //or single
