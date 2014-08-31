@@ -49,7 +49,7 @@ exports.edit = function(req, res){
     }); 
 };
 
-/*Save the customer*/
+/*Save the db1*/
 exports.save = function(req,res){
     
     var input = JSON.parse(JSON.stringify(req.body));
@@ -96,7 +96,7 @@ exports.save_edit = function(req,res){
         
         };
         
-        connection.query("UPDATE customer set ? WHERE vidid = ? ",[data,vidid], function(err, rows)
+        connection.query("UPDATE db1 set ? WHERE vidid = ? ",[data,vidid], function(err, rows)
         {
   
           if (err)
@@ -110,19 +110,19 @@ exports.save_edit = function(req,res){
 };
 
 
-exports.delete_customer = function(req,res){
+exports.delete_db1 = function(req,res){
           
      var vidid = req.params.vidid;
     
      req.getConnection(function (err, connection) {
         
-        connection.query("DELETE FROM customer  WHERE vidid = ? ",[vidid], function(err, rows)
+        connection.query("DELETE FROM db1  WHERE vidid = ? ",[vidid], function(err, rows)
         {
             
              if(err)
                  console.log("Error deleting : %s ",err );
             
-             res.redirect('/customers');
+             res.redirect('/db1');
              
         });
         
