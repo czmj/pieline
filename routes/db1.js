@@ -53,11 +53,15 @@ exports.edit = function(req, res){
 exports.save = function(req,res){
     
     var input = JSON.parse(JSON.stringify(req.body));
+    var oldvidid;
     req.getConnection(function (err, connection) {
-	var oldvidid = connection.query("select vidid from db1 order by vidid desc limit 1");
-	console.log(oldvidid);
+	var check = connection.query("select vidid from db1 order by vidid desc limit 1", function(err, oldvidid){
+
+    	console.log(oldvidid);
+	});
         var newvidid=oldvidid+1;
-	console.log(newvidid);    
+	console.log(newvidid);
+	    
         var data = {
             
 	    vidid : newvidid,
