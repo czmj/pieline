@@ -53,11 +53,14 @@ exports.edit = function(req, res){
 exports.save = function(req,res){
     
     var input = JSON.parse(JSON.stringify(req.body));
-    
     req.getConnection(function (err, connection) {
-        
+	var oldvidid = connection.query("select vidid from db1 order by vidid desc limit 1");
+	console.log(oldvidid);
+        var newvidid=oldvidid+1;
+	console.log(newvidid);    
         var data = {
             
+	    vidid : newvidid,
             title   : input.title,
             owner   : input.owner,
             location : input.location,
@@ -75,7 +78,7 @@ exports.save = function(req,res){
           
         });
         
-       // console.log(query.sql); get raw query
+        console.log(query.sql);
     
     });
 };
