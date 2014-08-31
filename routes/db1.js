@@ -58,9 +58,11 @@ exports.save = function(req,res){
 	var check = connection.query("select vidid from db1 order by vidid desc limit 1", function(err, oldvidid){
 
     	console.log(oldvidid);
+    	//returns [ { vidid: 138 } ]
 	});
         var newvidid=oldvidid+1;
 	console.log(newvidid);
+	//returns NaN
 	    
         var data = {
             
@@ -77,12 +79,14 @@ exports.save = function(req,res){
   
           if (err)
               console.log("Error inserting : %s ",err );
+              //returns Error inserting : Error: ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' 
          
           res.redirect('/db1');
           
         });
         
         console.log(query.sql);
+        //returns INSERT INTO db1 set `vidid` = NaN, `title` = 'Clara\'s favourite movie', `owner` = 'clara', `location` = 'Clara\'s house', `type` = 'dvd' 
     
     });
 };
