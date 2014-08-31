@@ -30,7 +30,7 @@ exports.add = function(req, res){
 
 exports.edit = function(req, res){
     
-    var vidid = req.params.vidid;
+    var vidid = req.params.id;
     
     req.getConnection(function(err,connection){
        
@@ -58,10 +58,10 @@ exports.save = function(req,res){
         
         var data = {
             
-            name    : input.name,
-            address : input.address,
-            email   : input.email,
-            phone   : input.phone 
+            title   : input.title,
+            owner   : input.owner,
+            location : input.location,
+            type   : input.type 
         
         };
         
@@ -83,16 +83,16 @@ exports.save = function(req,res){
 exports.save_edit = function(req,res){
     
     var input = JSON.parse(JSON.stringify(req.body));
-    var vidid = req.params.vidid;
+    var vidid = req.params.id;
     
     req.getConnection(function (err, connection) {
         
         var data = {
             
-            name    : input.name,
-            address : input.address,
-            email   : input.email,
-            phone   : input.phone 
+            title   : input.title,
+            owner   : input.owner,
+            location : input.location,
+            type   : input.type 
         
         };
         
@@ -112,11 +112,11 @@ exports.save_edit = function(req,res){
 
 exports.delete_db1 = function(req,res){
           
-     var vidid = req.params.vidid;
+     var vidid = req.params.id;
     
      req.getConnection(function (err, connection) {
         
-        connection.query("DELETE FROM db1  WHERE vidid = ? ",[vidid], function(err, rows)
+        var query = connection.query("DELETE FROM db1  WHERE vidid = ? ",[vidid], function(err, rows)
         {
             
              if(err)
@@ -125,6 +125,8 @@ exports.delete_db1 = function(req,res){
              res.redirect('/db1');
              
         });
-        
+                console.log(query.sql); // get raw query
+
      });
 };
+	
