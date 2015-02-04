@@ -10,6 +10,8 @@ var path = require('path');
 
 //load db1 route
 var db1 = require('./routes/db1'); 
+var jobboard = require('./routes/jobboard');
+
 var app = express();
 
 var connection  = require('express-myconnection'); 
@@ -45,7 +47,7 @@ app.use(
   user     : 'root',                                                            
   password : '3degUB7JxZa',                                                     
        port : 3306, //port mysql
-        database:'db1'
+        database:'jobboard'
 
     },'pool') //or single
 
@@ -60,6 +62,10 @@ app.post('/db1/add', db1.save);
 app.get('/db1/delete/:id', db1.delete_db1);
 app.get('/db1/edit/:id', db1.edit);
 app.post('/db1/edit/:id',db1.save_edit);
+
+app.get('/jobboard', jobboard.list);
+app.get('/jobboard/view/:id',jobboard.view);
+
 app.use(app.router);
 
 http.createServer(app).listen(app.get('port'), function(){

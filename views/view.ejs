@@ -1,0 +1,17 @@
+<%- include layouts/header.ejs %>
+
+        <div class="page-data">
+            <h1><%=data[1].title%> at <%=data[1].company%></h1>
+            <p>Location: <%=data[1].location%></p>
+            <p>Type: 
+
+            <% if(data[1].hours==1){  %>                         
+                 Full Time
+            <% }else{ %>
+                Part Time
+            <% } %>
+            </p>
+
+        </div>
+        
+<%- include layouts/footer.ejs %>
