@@ -13,7 +13,7 @@ exports.list = function(req, res){
             if(err)
                 console.log("Error Selecting : %s ",err );
      
-            res.render('jobboard',{page_title:"jobboard - Node.js",data:rows});
+            res.render('jobboard',{page_title:"Sexiest Job Board on the Motherfucking Planet",data:rows});
                 
            
          });
@@ -23,8 +23,29 @@ exports.list = function(req, res){
   
 };
 
+exports.view = function(req, res){
+    
+    var id = req.params.id;
+    
+    req.getConnection(function(err,connection){
+       
+        var query = connection.query('SELECT * FROM jobboard WHERE id = ?',[id],function(err,rows)
+        {
+            
+            if(err)
+                console.log("Error Selecting : %s ",err );
+     
+            res.render('view',{page_title:"View Job",data:rows});
+                
+           
+         });
+         
+         //console.log(query.sql);
+    }); 
+};
 
-exports.add = function(req, res){
+
+/*exports.add = function(req, res){
   res.render('add_media',{page_title:"Add Media - Node.js"});
 };
 
@@ -49,7 +70,6 @@ exports.edit = function(req, res){
     }); 
 };
 
-/*Save the jobboard*/
 exports.save = function(req,res){
     
     var input = JSON.parse(JSON.stringify(req.body));
@@ -136,4 +156,6 @@ exports.delete_jobboard = function(req,res){
 
      });
 };
+
+*/
 	

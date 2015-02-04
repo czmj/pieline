@@ -1,16 +1,39 @@
 <%- include layouts/header.ejs %>
 
         <div class="page-data">
-            <h1><%=data[1].title%> at <%=data[1].company%></h1>
-            <p>Location: <%=data[1].location%></p>
-            <p>Type: 
+            <h1><%=data[0].title%> at <a href="<%=data[0].url%>"><%=data[0].company%></a></h1>
+            <p>Location: <%=data[0].location%></p>
 
-            <% if(data[1].hours==1){  %>                         
+            <p>Type: 
+            <% if(data[0].hours==1){  %>                         
                  Full Time
             <% }else{ %>
                 Part Time
             <% } %>
             </p>
+
+            <p>Type: 
+            <% if(data[0].hours==1){  %>                         
+                 Full Time
+            <% }else{ %>
+                Part Time
+            <% } %>
+            </p>
+
+            <p> How to contact: <%=data[0].contact_details%></p>
+
+            <% if(data[0].contact_mention==1){  %>                          
+                <p><strong>Do:</strong> mention the sexy-ass job board when applying</p>
+            <% } %>
+
+            <% if(data[0].contact_recruiters==1){  %>                          
+                <p><strong>Recruiters may</strong> contact this poster.</p>
+            <% }else{ %>
+                <p><strong>Recruiters please do not</strong> contact this poster.</p>
+            <% } %>
+
+            <p> Summary: <%=data[0].description%></p>
+
 
         </div>
         

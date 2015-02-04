@@ -64,7 +64,7 @@ app.get('/db1/edit/:id', db1.edit);
 app.post('/db1/edit/:id',db1.save_edit);
 
 app.get('/jobboard', jobboard.list);
-app.get('/jobboard/view/:id',jobboard.view);
+app.get('/jobboard/view/:id', jobboard.view);
 
 app.use(app.router);
 

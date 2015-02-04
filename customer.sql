@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `jobboard` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(200) NOT NULL,
   `company` varchar(200) NOT NULL,
+  `category` tinyint NOT NULL,
   `location` varchar(200) NOT NULL,
   `hours`  boolean NOT NULL,
   `url` varchar(200) NOT NULL,
@@ -46,8 +47,10 @@ CREATE TABLE IF NOT EXISTS `jobboard` (
 -- Dumping data for table`customer`
 --
 
-INSERT INTO `jobboard` (`id`, `title`, `company`, `location`, `hours`, `url`, `contact_details`, `contact_mention`, `contact_recruiters`, `description`) 
-VALUES (1, 'Junior Web Designer', 'banging blogs', 'sheffield', 1, 'http://blog.tdobson.net', 'Please email lol@lol.com', 1, 0, 'This is a job at a non-porn company doing non porny things');
+INSERT INTO `jobboard` (`id`, `title`, `company`, `category`, `location`, `hours`, `url`, `contact_details`, `contact_mention`, `contact_recruiters`, `description`) 
+VALUES (1, 'Graduate Web Developer', 'Evoluted', 2, 'Sheffield', 1, 'http://www.evoluted.net/join-us/graduate-web-developer', 'To apply, please send your CV with a covering letter and an indication of your salary requirements to recruitment@evoluted.net.', 1, 0, 'Evoluted, a Sheffield based digital agency, is looking for a Graduate Web Developer to work on the development of exciting new projects and maintenance of existing sites. You’ll be an enthusiastic team player who can participate in the creative development of new ideas and solutions. You must be self-motivated and able to work on your own initiative. In return, you’ll have scope to put your own stamp on projects and make a real impact on the growth of the business. </p><p>In other words, you’ll be much more than a code monkey with us. Our workspace is a friendly, informal and stimulating environment in the heart of Sheffield. We’re a close knit team and we plan to stay that way. You’ll have your own top-of-the-line workstation, in an office that’s been newly redesigned to promote collaborative working. You’ll also receive excellent benefits. If you have the skills and can thrive in this kind of environment, this could be the opportunity for you.');
+VALUES (2, 'Front End Developer', 'Uber Agency', 2, 'Sheffield', 1, 'http://www.uberagency.com/careers', 'If you\'re interested please send your details to frontenddev@uberagency.com', 1, 0, 'As a Front End Developer, your main responsibility is for the design and production of websites and web application user interfaces.</p><p>We\'re looking for someone with a creative eye and an attention to aesthetic detail that can take a blank canvas and make it into something unique.</p><p>Our ideal candidate has experience designing using Photoshop coupled with several years experience writing custom (X)HTML, CSS, and JavaScript. Expertise writing semantic, modular front end code using HTML5, CSS3, and W3C coding practices is a must. Knowledge of Flash and Illustrator would be a distinct advantage.</p><p>An understanding of the concepts of progressive enhancement, mobile first and future friendly design is also highly encouraged.');
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
