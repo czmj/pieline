@@ -1,16 +1,8 @@
 <%- include layouts/header.ejs %>
 
-        <div class="page-data">
+        <div class="">
             <h1><%=data[0].title%> at <a href="<%=data[0].url%>"><%=data[0].company%></a></h1>
             <p>Location: <%=data[0].location%></p>
-
-            <p>Type: 
-            <% if(data[0].hours==1){  %>                         
-                 Full Time
-            <% }else{ %>
-                Part Time
-            <% } %>
-            </p>
 
             <p>Type: 
             <% if(data[0].hours==1){  %>                         
