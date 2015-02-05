@@ -55,16 +55,16 @@ app.use(
 
 
 
-app.get('/', routes.index);
-app.get('/db1', db1.list);
-app.get('/db1/add', db1.add);
-app.post('/db1/add', db1.save);
-app.get('/db1/delete/:id', db1.delete_db1);
-app.get('/db1/edit/:id', db1.edit);
-app.post('/db1/edit/:id',db1.save_edit);
+//app.get('/', routes.index);
+//app.get('/db1', db1.list);
+//app.get('/db1/add', db1.add);
+//app.post('/db1/add', db1.save);
+//app.get('/db1/delete/:id', db1.delete_db1);
+//app.get('/db1/edit/:id', db1.edit);
+//app.post('/db1/edit/:id',db1.save_edit);
 
-app.get('/jobboard', jobboard.list);
-app.get('/jobboard/view/:id', jobboard.view);
+app.get('/', jobboard.list);
+app.get('/view/:id', jobboard.view);
 
 app.use(app.router);
 
