@@ -1,28 +1,29 @@
 <%- include layouts/header.ejs %>
                 <hr> 
 
+<div class="list-group">
                 <% if(data.length){ 
                                 
                  for(var i = 0;i < data.length;i++) { %>
-                 
-                <p>
+
+<a href="view/<%=data[i].id%>" class="list-group-item">   
                     <% if(data[i].hours==1){  %>                         
                          Full Time
                     <% }else{ %>
                         Part Time
                     <% } %>
-                    <a href="view/<%=data[i].id%>"><%=data[i].title%></a>
+                    <%=data[i].title%>
                     at <%=data[i].company%>
                     in <%=data[i].location%>
-                </p>
-                <hr></hr>
-            <% }
-            
-             }else{ %>
+                </a>
+
+
+
+            <% } %>
+              <% }else{ %>
                  <p>No user</p>
             <% } %>
-                
-                              
-                
-        
+
+                </div>
+
 <%- include layouts/footer.ejs %>
