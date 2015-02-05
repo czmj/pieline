@@ -76,23 +76,24 @@ exports.save = function(req,res){
     console.log(input);
     req.getConnection(function (err, connection) {
 	
-        //var newid=oldid+1;
-	      //console.log(newid);
-	     var notNull=function(cat){
-        if(input.cat==null){
-          input.cat=0;
-        }
-       }
+	  if(input.hours==null){
+      input.hours=0;
+    }
+    if(input.contact_mention==null){
+      input.contact_mention=0;
+    }
+    if(input.contact_recruiters==null){
+      input.contact_recruiters=0;
+    }
+
         var data = {
-            
-	          //id : newid,
             title   : input.title,
             company   : input.company,
             location : input.location,
-            hours   : notNull(hours),
+            hours   : input.hours,
             category : input.category,
-            contact_mention: notNull(contact_mention),
-            contact_recruiters: notNull(contact_details),
+            contact_mention: input.contact_mention,
+            contact_recruiters: input.contact_recruiters,
             url: input.url,
             contact_details: input.contact_details,
             description:input.description,
