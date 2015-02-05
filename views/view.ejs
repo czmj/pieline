@@ -1,14 +1,12 @@
 <%- include layouts/header.ejs %>
-            <h1><%=data[0].title%> at <a href="<%=data[0].url%>"><%=data[0].company%></a></h1>
-            <p>Location: <%=data[0].location%></p>
-
-            <p>Type: 
+            <h1><%=data[0].title%> job at <a href="<%=data[0].url%>"><%=data[0].company%></a></h1>
+            <p>This is a<strong>
             <% if(data[0].hours==1){  %>                         
                  Full Time
             <% }else{ %>
                 Part Time
-            <% } %>
-            </p>
+            <% } %></strong>
+             position in  <strong><%=data[0].location%></strong>.</p>
 
             <% if(data[0].contact_recruiters==1){  %>                          
                 <p class="bg-success"><strong>Recruiters may</strong> contact this poster.</p>
@@ -16,8 +14,9 @@
                 <p class="bg-warning"><strong>Recruiters: please do not contact</strong> this poster.</p>
             <% } %>
 
-            <strong>Are you who they're looking for?</strong><p> <%=data[0].description%></p>
+            <strong>Are you who they're looking for?</strong><p> <%=data[0].description%></p><p><a href="<%=data[0].url%>">Read more about the job on <%=data[0].company%>'s website</a>.</p>
 
+		
             <strong> Sound like your thing? Here's how you get in touch:</strong><p> <%=data[0].contact_details%></p>
 
             <% if(data[0].contact_mention==1){  %>                          
