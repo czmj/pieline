@@ -5,10 +5,16 @@
             <form method="post" action="/db1/add">
                 <table cellpadding="11">
                 <tr>
-                    <td class="label">Title</td><td>: <input type="text" name="title" required></td>
+                    <td class="label">Company Name</td><td>: <input type="text" name="title" required></td>
                  </tr>
+
+                <tr>
+                    <td class="label">Job Description</td><td>: <textarea class="form-control" rows=3" spellcheck="true" name="description" required></td>
+                 </tr>
+
+
                  <tr>
-                    <td class="label">Owner</td><td>: <input name="owner" required></td>
+                    <td class="label">Job Title</td><td>: <input name="owner" required></td>
                 </tr>
                 <tr>
                     <td class="label">Location</td><td>: <input type="text" name="location" required></td>
@@ -16,6 +22,9 @@
                   <tr>
                     <td class="label">Type</td><td>: <input type="text" name="type" required></td>
                  </tr>
+
+
+
                  <tr>
                     <td class="label"></td>
                     <td>

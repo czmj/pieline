@@ -7,7 +7,7 @@ exports.list = function(req, res){
 
   req.getConnection(function(err,connection){
        
-        var query = connection.query('SELECT id, title, company, location, hours FROM jobboard',function(err,rows)
+        var query = connection.query('SELECT id, title, company, location FROM jobboard',function(err,rows)
         {
             
             if(err)
@@ -45,11 +45,11 @@ exports.view = function(req, res){
 };
 
 
-/*exports.add = function(req, res){
-  res.render('add_media',{page_title:"Add Media - Node.js"});
+exports.add = function(req, res){
+  res.render('add_new_job',{page_title:"Add New Job"});
 };
 
-exports.edit = function(req, res){
+/*exports.edit = function(req, res){
     
     var vidid = req.params.id;
     
@@ -68,27 +68,34 @@ exports.edit = function(req, res){
          
          //console.log(query.sql);
     }); 
-};
+};*/
 
 exports.save = function(req,res){
     
     var input = JSON.parse(JSON.stringify(req.body));
-    var oldvidid;
+    console.log(input);
     req.getConnection(function (err, connection) {
-	var check = connection.query("select vidid from jobboard order by vidid desc limit 1", function(err, oldvidid){
-
-    	console.log(oldvidid);
-	});
-        var newvidid=oldvidid+1;
-	console.log(newvidid);
-	    
+	
+        //var newid=oldid+1;
+	      //console.log(newid);
+	     var notNull=function(cat){
+        if(input.cat==null){
+          input.cat=0;
+        }
+       }
         var data = {
             
-	    vidid : newvidid,
+	          //id : newid,
             title   : input.title,
-            owner   : input.owner,
+            company   : input.company,
             location : input.location,
-            type   : input.type 
+            hours   : notNull(hours),
+            category : input.category,
+            contact_mention: notNull(contact_mention),
+            contact_recruiters: notNull(contact_details),
+            url: input.url,
+            contact_details: input.contact_details,
+            description:input.description,
         
         };
         
@@ -98,7 +105,7 @@ exports.save = function(req,res){
           if (err)
               console.log("Error inserting : %s ",err );
          
-          res.redirect('/jobboard');
+          res.redirect('/');
           
         });
         
@@ -107,6 +114,7 @@ exports.save = function(req,res){
     });
 };
 
+/*
 exports.save_edit = function(req,res){
     
     var input = JSON.parse(JSON.stringify(req.body));
