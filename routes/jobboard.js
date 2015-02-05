@@ -13,7 +13,7 @@ exports.list = function(req, res){
             if(err)
                 console.log("Error Selecting : %s ",err );
      
-            res.render('jobboard',{page_title:"Sexiest Job Board on the Motherfucking Planet",data:rows});
+            res.render('jobboard',{page_title:"Job Board",data:rows});
                 
            
          });
