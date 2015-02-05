@@ -7,11 +7,6 @@
                  for(var i = 0;i < data.length;i++) { %>
 
 <a href="view/<%=data[i].id%>" class="list-group-item">   
-                    <% if(data[i].hours==1){  %>                         
-                         Full Time
-                    <% }else{ %>
-                        Part Time
-                    <% } %>
                     <%=data[i].title%>
                     at <%=data[i].company%>
                     in <%=data[i].location%>
@@ -24,6 +19,6 @@
                  <p>No user</p>
             <% } %>
 
-                </div>
+</div>
 
 <%- include layouts/footer.ejs %>
