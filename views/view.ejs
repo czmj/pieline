@@ -10,19 +10,19 @@
             <% } %>
             </p>
 
-            <p> How to contact: <%=data[0].contact_details%></p>
+            <% if(data[0].contact_recruiters==1){  %>                          
+                <p class="bg-success"><strong>Recruiters may</strong> contact this poster.</p>
+            <% }else{ %>
+                <p class="bg-warning"><strong>Recruiters: please do not contact</strong> this poster.</p>
+            <% } %>
+
+            <strong>Are you who they're looking for?</strong><p> <%=data[0].description%></p>
+
+            <strong> Sound like your thing? Here's how you get in touch:</strong><p> <%=data[0].contact_details%></p>
 
             <% if(data[0].contact_mention==1){  %>                          
-                <p><strong>Do:</strong> mention Pieline.net when applying</p>
+                <p class="bg-info"><strong>Do feel free to mention</strong> Pieline.net when applying</p>
             <% } %>
-
-            <% if(data[0].contact_recruiters==1){  %>                          
-                <p><strong>Recruiters may</strong> contact this poster.</p>
-            <% }else{ %>
-                <p><strong>Recruiters please do not</strong> contact this poster.</p>
-            <% } %>
-
-            <p> Summary: <%=data[0].description%></p>
 
         
 <%- include layouts/footer.ejs %>
