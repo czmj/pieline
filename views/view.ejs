@@ -1,5 +1,4 @@
 <%- include layouts/header.ejs %>
-            <hr>
         <div class="view-job">
             <h1 class="job-title"><%=data[0].title%> job at <a href="<%=data[0].url%>"><%=data[0].company%></a></h1>
             <p>This is a<strong>
@@ -15,17 +14,22 @@
             <% }else{ %>
                 <p class="bg-warning"><strong>Recruiters: please do not contact</strong> this poster.</p>
             <% } %>
+            
+            <div class="row">
+                <h3>Are you who they're looking for?</h3>
+                <p> <%=data[0].description%></p>
+                <button class="btn btn-default pull-right" href="<%=data[0].url%>">Read more about the job on <%=data[0].company%>'s website</button>
+            </div>
+            <br>
 
-            <h3>Are you who they're looking for?</h3>
-            <p> <%=data[0].description%></p><p><a href="<%=data[0].url%>">Read more about the job on <%=data[0].company%>'s website</a>.</p>
-
-		
+		<div class="row">
             <h3> Sound like your thing? Here's how you get in touch:</h3>
             <p> <%=data[0].contact_details%></p>
 
             <% if(data[0].contact_mention==1){  %>                          
                 <p class="bg-info"><strong>Do feel free to mention</strong> Pieline.net when applying</p>
             <% } %>
+        </div>
         </div>
 
         

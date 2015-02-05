@@ -26,7 +26,7 @@ exports.list = function(req, res){
 exports.view = function(req, res){
     
     var id = req.params.id;
-    
+
     req.getConnection(function(err,connection){
        
         var query = connection.query('SELECT * FROM jobboard WHERE id = ?',[id],function(err,rows)

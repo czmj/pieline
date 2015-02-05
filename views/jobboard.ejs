@@ -1,23 +1,19 @@
 <%- include layouts/header.ejs %>
-                <hr> 
+
+
 
 <div class="list-group">
-                <% if(data.length){ 
-                                
-                 for(var i = 0;i < data.length;i++) { %>
-
-<a href="view/<%=data[i].id%>" class="list-group-item">   
+                <%  var title
+                 	for(var i = 0;i < data.length;i++) { 
+                        title=data[i].title
+                        title=title.replace(/\s+/g, '-');
+			 %>
+<a href="jobs/<%=data[i].location%>/<%=data[i].id%>/<%=title%>-at-<%=data[i].company%>" class="list-group-item">   
                     <%=data[i].title%>
                     at <%=data[i].company%>
                     in <%=data[i].location%>
                 </a>
-
-
-
-            <% } %>
-              <% }else{ %>
-                 <p>No user</p>
-            <% } %>
+			<%}%>
 
 </div>
 

@@ -8,8 +8,7 @@ var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 
-//load db1 route
-var db1 = require('./routes/db1'); 
+//load jobboard route
 var jobboard = require('./routes/jobboard');
 
 var app = express();
@@ -57,6 +56,8 @@ app.use(
 
 //app.get('/', routes.index);
 //app.get('/db1', db1.list);
+
+
 //app.get('/db1/add', db1.add);
 //app.post('/db1/add', db1.save);
 //app.get('/db1/delete/:id', db1.delete_db1);
@@ -65,6 +66,16 @@ app.use(
 
 app.get('/', jobboard.list);
 app.get('/view/:id', jobboard.view);
+app.get('/jobs/:location/:id/:title_:company', jobboard.view);
+
+// private funktions
+app.get('/admin/add', jobboard.add);
+app.post('/admin/add', jobboard.save);
+//app.get('/admin/delete/:id', db1.delete_db1);
+//app.get('/admin/edit/:id', db1.edit);
+//app.post('/admin/edit/:id',db1.save_edit);
+
+
 
 app.use(app.router);
 
