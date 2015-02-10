@@ -7,7 +7,7 @@ exports.list = function(req, res){
 
   req.getConnection(function(err,connection){
        
-        var query = connection.query('SELECT id, title, company, location FROM jobboard',function(err,rows)
+        var query = connection.query('SELECT id, title, company, location FROM jobboard ORDER BY id DESC',function(err,rows)
         {
             
             if(err)
