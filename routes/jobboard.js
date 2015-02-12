@@ -28,15 +28,14 @@ exports.view = function(req, res){
     var id = req.params.id;
 
     req.getConnection(function(err,connection){
-       
-        var query = connection.query('SELECT * FROM jobboard WHERE id = ?',[id],function(err,rows)
-        {
-            
-            if(err)
-                console.log("Error Selecting : %s ",err );
-     
-            res.render('view',{page_title:"View Job",data:rows});
-                
+       var query = connection.query('SELECT * FROM jobboard WHERE id = ?',[id],function(err,rows)
+        { 
+        	if(!rows[0]){
+        		res.status(404);
+        		res.render('404', { url: req.url });
+        	}else{     
+                    res.render('view',{page_title:"View Job",data:rows});
+                }        
            
          });
          

@@ -5,7 +5,7 @@
 <div class="list-group">
                 <%  var title
                  	for(var i = 0;i < data.length;i++) { 
-                        title=data[i].title
+                        title=data[i].title.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'-');
                         company=data[i].company
                         location=data[i].location
                         title=title.replace(/\s+/g, '-');
