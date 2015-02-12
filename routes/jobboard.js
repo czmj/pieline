@@ -1,13 +1,20 @@
+/* 
+ *  silly date faff lameness
+ */
+
+var today = Date.today().toString("yyyy-MM-dd");
+var month_ago_today = Date.today().addMonths(-1).toString("yyyy-MM-dd");
 
 /*
- * GET users listing.
+ * GET front page jobs listing
  */
+
 
 exports.list = function(req, res){
 
   req.getConnection(function(err,connection){
-       
-        var query = connection.query('SELECT id, title, company, location, dateposted FROM jobboard WHERE dateposted between DATE("2015-01-14") AND DATE("2015-02-12") ORDER BY dateposted DESC ',function(err,rows)
+
+        var query = connection.query('SELECT id, title, company, location, dateposted FROM jobboard WHERE dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC ',function(err,rows)
         {
             
             if(err)
@@ -17,7 +24,8 @@ exports.list = function(req, res){
                 
            
          });
-         
+	console.log(today);
+	console.log(month_ago_today);
          //console.log(query.sql);
     });
   
@@ -85,22 +93,6 @@ exports.save = function(req,res){
       input.contact_recruiters=0;
     }
 
-
-// silly date faff lameness
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
-var yyyy = today.getFullYear();
-
-if(dd<10) {
-    dd='0'+dd
-} 
-
-if(mm<10) {
-    mm='0'+mm
-} 
-
-today = yyyy+'-'+mm+'-'+dd;
 
         var data = {
             dateposted    : today,

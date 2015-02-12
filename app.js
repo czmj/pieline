@@ -7,6 +7,7 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
+var date = require('./node_modules/datejs/index.js');
 
 //load jobboard route
 var jobboard = require('./routes/jobboard');
