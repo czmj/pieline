@@ -1,5 +1,10 @@
 <%- include layouts/header.ejs %>
-            
+		<!-- wysihtml core javascript with default toolbar functions --> 
+		<script src="bower_components/wysihtml/dist/wysihtml-toolbar.min.js"></script>
+
+		<!-- rules defining tags, attributes and classes that are allowed -->
+		<script src="bower_components/wysihtml/parser_rules/advanced_and_extended.js"></script>
+
             <form method="post" action="/admin/add">
                 <div class="form-group">
                     <label for="title">Job Title: </label> <input type="text" name="title" required>
@@ -22,28 +27,47 @@
                     <label for="url">Jobs page URL: </label> <input name="url" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="description">Job Description: </label><textarea class="form-control" rows=3 spellcheck="true" name="description" required></textarea>
+<!-- toolbar with suitable buttons and dialogues -->
+<div id="toolbar">
+  <a data-wysihtml5-command="bold">bold</a>
+  <a data-wysihtml5-command="italic">italic</a>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">H1</a>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p">P</a>
+</div>
+
+<!-- element to edit -->
+<div name="description" id="editor" data-placeholder="Go on, start editing..."></div>
+
+		<div>
+<!--                    <label for="description">Job Description: </label><textarea id="editor" class="form-control" rows=3 spellcheck="true" name="description" required></textarea>-->
                 </div>
+
                 <div class="form-group">
                     <label for="contact_details">How to contact: </label><textarea class="form-control" rows=2 spellcheck="true" name="contact_details" required></textarea>
                 </div>
 
                 <div class="checkbox">
                     <label>
-                      <input type="checkbox" name="hours" checked="1"> Full time?
+                      <input type="checkbox" name="hours" checked="checked"> Full time?
                     </label>
                     <label>
-                      <input type="checkbox" name="contact_mention" checked="1"> Mention pieline?
+                      <input type="checkbox" name="contact_mention" checked="checked"> Mention pieline?
                     </label>
                     <label>
                       <input type="checkbox" name="contact_recruiter" > Recruiters?
                     </label>
                 </div>
 
-                <input type="submit" name="submit" value="Save">
+                <input type="submit" name="submit" value="Post live!">
                 </div>
 
             </form>
+
+<script>
+  var editor = new wysihtml5.Editor('editor', {
+    toolbar: 'toolbar',
+    parserRules:  wysihtml5ParserRules
+  });
+</script>
         
 <%- include layouts/footer.ejs %>
