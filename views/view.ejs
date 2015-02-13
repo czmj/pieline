@@ -3,9 +3,9 @@
             <h1 class="job-title"><%=data[0].title%> job at <a href="<%=data[0].url%>"><%=data[0].company%></a></h1>
             <p>This is a<strong>
             <% if(data[0].hours==1){  %>                         
-                 Full Time
+                 Contract
             <% }else{ %>
-                Part Time
+                Full Time
             <% } %></strong>
              job in  <strong><%=data[0].location%></strong>.</p>
 
@@ -16,13 +16,13 @@
             <% } %>
             
             <h3>Are you who they're looking for?</h3>
-            <p> <%=data[0].description%></p>
+            <p> <%- data[0].description%></p>
             <p><a class="btn btn-default" href="<%=data[0].url%>">Read more about the job on <%=data[0].company%>'s website</a></p>
 
             <hr>
 
     		<h3> Sound like your thing? Here's how you get in touch:</h3>
-            <p> <%=data[0].contact_details%></p>
+            <p> <%-data[0].contact_details%></p>
             <% if(data[0].contact_mention==1){  %>                          
                     <p class="bg-info"><strong>Do feel free to mention</strong> Pieline.net when applying</p>
                 <% } %>

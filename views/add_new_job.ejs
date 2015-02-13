@@ -1,6 +1,8 @@
 <%- include layouts/header.ejs %>
 		<!-- wysihtml core javascript with default toolbar functions --> 
-		<script src="/js//wysihtml/dist/wysihtml5x-toolbar.min.js"></script>
+		<script src="/js/wysihtml/dist/wysihtml5x.min.js"></script>
+                <script src="/js/wysihtml/dist/wysihtml5x-toolbar.js"></script>
+
 
 		<!-- rules defining tags, attributes and classes that are allowed -->
 		<script src="/js/wysihtml/parser_rules/advanced_and_extended.js"></script>
@@ -27,19 +29,27 @@
                     <label for="url">Jobs page URL: </label> <input name="url" required>
                 </div>
 
-<!-- toolbar with suitable buttons and dialogues 
-<div id="toolbar">
+<div id="wysihtml-toolbar" style="display: none;">
   <a data-wysihtml5-command="bold">bold</a>
   <a data-wysihtml5-command="italic">italic</a>
-  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">H1</a>
-  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p">P</a>
-</div>  -->
-
-<!-- element to edit 
-<div name="description" id="editor" data-placeholder="Go on, start editing..."></div>-->
-
+  
+  <!-- Some wysihtml5 commands require extra parameters -->
+  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red">red</a>
+  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green">green</a>
+  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue">blue</a>
+  
+  <!-- Some wysihtml5 commands like 'createLink' require extra paramaters specified by the user (eg. href) -->
+  <a data-wysihtml5-command="createLink">insert link</a>
+  <div data-wysihtml5-dialog="createLink" style="display: none;">
+    <label>
+      Link:
+      <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+    </label>
+    <a data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+  </div>
+</div>
 		<div>
-                    <label for="description">Job Description: </label><textarea id="editor" class="form-control" rows=3 spellcheck="true" name="description" required></textarea>
+                    <label for="description">Job Description: </label><textarea  class="form-control" rows=3 spellcheck="true" name="description" required id="wysihtml-textarea" placeholder="Enter your text ..."></textarea>
                 </div>
 
                 <div class="form-group">
@@ -64,10 +74,10 @@
             </form>
 
 <script>
-  var editor = new wysihtml5.Editor('editor', {
-    toolbar: 'toolbar',
-    parserRules:  wysihtml5ParserRules
-  });
+var editor = new wysihtml5.Editor("wysihtml-textarea", { // id of textarea element
+  toolbar:      "wysihtml-toolbar", // id of toolbar element
+  parserRules:  wysihtml5ParserRules // defined in parser rules set 
+});
 </script>
         
 <%- include layouts/footer.ejs %>
