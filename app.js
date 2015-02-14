@@ -68,6 +68,8 @@ app.use(
 app.get('/', jobboard.list);
 app.get('/view/:id', jobboard.view);
 app.get('/jobs/:location', jobboard.city);
+app.get('/jobs/:location/:category', jobboard.citycategory);
+app.get('/jobs/:location/:id/:title_:company', jobboard.view);
 app.get('/jobs/:location/:id/:title_:company', jobboard.view);
 
 

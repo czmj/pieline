@@ -19,3 +19,12 @@ body {
   margin-top: 1.2em;
 }
 
+.btn-group .btn{
+    margin-bottom: 5%;
+}
+
+.list-group{
+    padding:0;
+    margin:0 !important;
+}
+

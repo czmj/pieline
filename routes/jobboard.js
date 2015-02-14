@@ -41,7 +41,7 @@ exports.city = function(req, res){
         {
                 if(!rows[0]){
                         res.status(404);
-                        res.render('404', { url: req.url });
+                        res.render('404', { url: req.url,page_title:"404: Sorry - Benny Doesn't want you to see this" });
                 }else{
                     res.render('city',{page_title:"View Job",data:rows});
                 }
@@ -50,6 +50,28 @@ exports.city = function(req, res){
 
          });
 };
+
+exports.citycategory = function(req, res){
+
+  var city = req.params.location;
+  var category = req.params.category;
+
+  req.getConnection(function(err,connection){
+
+        var query = connection.query('SELECT id, title, company, category, location, dateposted FROM jobboard WHERE location = ? AND category = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC ',[city,category],function(err,rows)
+        {
+                if(!rows[0]){
+                        res.status(404);
+                        res.render('404', { url: req.url });
+                }else{
+                    res.render('citycategory',{page_title:"View Job",data:rows});
+                }
+        });
+        console.log(query.sql);
+
+         });
+};
+
 
 
 exports.view = function(req, res){
