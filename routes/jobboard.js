@@ -20,7 +20,7 @@ exports.list = function(req, res){
             if(err)
                 console.log("Error Selecting : %s ",err );
      
-            res.render('jobboard',{page_title:"Job Board",data:rows});
+            res.render('jobboard',{page_title:"Pieline.net Job Board - northern tech jobs for the community by the community",data:rows});
                 
            
          });
@@ -43,7 +43,7 @@ exports.city = function(req, res){
                         res.status(404);
                         res.render('404', { url: req.url,page_title:"404: Sorry - Benny Doesn't want you to see this" });
                 }else{
-                    res.render('city',{page_title:"View Job",data:rows});
+                    res.render('city',{page_title:"Tech Jobs in your city",data:rows});
                 }
 	});
 //        console.log(query.sql);
@@ -85,7 +85,7 @@ exports.view = function(req, res){
         		res.status(404);
         		res.render('404', { url: req.url });
         	}else{     
-                    res.render('view',{page_title:"View Job",data:rows});
+                    res.render('view',{page_title:"Here's a job for you",data:rows});
                 }        
            
          });
