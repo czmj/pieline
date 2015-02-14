@@ -7,12 +7,12 @@
             <% }else{ %>
                 Full Time
             <% } %></strong>
-             job in  <strong><%=data[0].location%></strong>.</p>
+             position in  <a href="/jobs/<%=data[0].location%>"><strong><%=data[0].location%></strong></a>.</p>
 
             <% if(data[0].contact_recruiters==1){  %>                          
-                <p class="bg-success"><strong>Recruiters may</strong> contact this poster.</p>
+                <p class="bg-success">Recruiters <strong>may</strong> contact this poster.</p>
             <% }else{ %>
-                <p class="bg-warning"><strong>Recruiters: please do not contact</strong> this poster.</p>
+                <p class="bg-warning"><strong>Recruiters:</strong> please <strong>do not contact</strong> this poster.</p>
             <% } %>
             
             <h3>Are you who they're looking for?</h3>
@@ -26,6 +26,7 @@
             <% if(data[0].contact_mention==1){  %>                          
                     <p class="bg-info"><strong>Do feel free to mention</strong> Pieline.net when applying</p>
                 <% } %>
+
         </div>
 
         

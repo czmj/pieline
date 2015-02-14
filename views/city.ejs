@@ -1,8 +1,7 @@
 <%- include layouts/header.ejs %>
+<%- include layouts/nav.ejs %>
 
-<h3>Jobs in <%=data[0].location%>.</h3>
-
-<div class="list-group">
+<div class="list-group col-xs-12 col-sm-8 col-md-8">
                 <%  var title
                  	for(var i = 0;i < data.length;i++) { 
                         title=data[i].title.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'-');

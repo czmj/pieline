@@ -1,8 +1,7 @@
 <%- include layouts/header.ejs %>
 
 
-
-<div class="list-group">
+<div class="list-group col-xs-12 col-sm-9 col-md-10">
                 <%  var title
                  	for(var i = 0;i < data.length;i++) { 
                         title=data[i].title.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'-');
