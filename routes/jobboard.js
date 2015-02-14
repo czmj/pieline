@@ -24,12 +24,33 @@ exports.list = function(req, res){
                 
            
          });
-	console.log(today);
-	console.log(month_ago_today);
-         //console.log(query.sql);
+	//console.log(today);
+	//console.log(month_ago_today);
+        //console.log(query.sql);
     });
   
 };
+
+exports.city = function(req, res){
+
+  var city = req.params.location;
+
+  req.getConnection(function(err,connection){
+
+        var query = connection.query('SELECT id, title, company, category, location, dateposted FROM jobboard WHERE location = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC ',[city],function(err,rows)
+        {
+                if(!rows[0]){
+                        res.status(404);
+                        res.render('404', { url: req.url });
+                }else{
+                    res.render('city',{page_title:"View Job",data:rows});
+                }
+	});
+//        console.log(query.sql);
+
+         });
+};
+
 
 exports.view = function(req, res){
     
