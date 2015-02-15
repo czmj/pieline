@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -8,6 +7,7 @@ var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 var date = require('./node_modules/datejs/index.js');
+var config = require('config'); //  https://github.com/lorenwest/node-config
 
 //load jobboard route
 var jobboard = require('./routes/jobboard');
@@ -38,22 +38,19 @@ if ('development' == app.get('env')) {
     connection peer, register as middleware
     type koneksi : single,pool and request 
 -------------------------------------------*/
-
 app.use(
-    
+
     connection(mysql,{
-        
-  host     : 'localhost',                                                       
-  user     : 'root',                                                            
-  password : '3degUB7JxZa',                                                     
+
+  host     : 'localhost',
+  user     : 'root',
+  password : '3degUB7JxZa',
        port : 3306, //port mysql
         database:'jobboard'
 
     },'pool') //or single
 
 );
-
-
 
 //app.get('/', routes.index);
 //app.get('/db1', db1.list);

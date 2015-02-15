@@ -14,16 +14,27 @@ body {
 .container-narrow > hr {
   margin: 30px 0;
 }
+    
+.noshadow {
+    box-shadow: none !important;
+}
+
 
 .view-job > p{
   margin-top: 1.2em;
 }
 
+/*admin page*/
 .btn-group .btn{
     margin-bottom: 5%;
 }
 
-.list-group{
-    padding:0 !important;
-}
 
+/* Modal*/
+.panel, .modal-content, .list-group{
+    padding:0 !important;
+    margin:0;
+}
+.plan {
+    max-width: 300px;	
+}
