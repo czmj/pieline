@@ -7,7 +7,7 @@ var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 var date = require('./node_modules/datejs/index.js');
-var config = require('config'); //  https://github.com/lorenwest/node-config
+//var config = require('config'); //  https://github.com/lorenwest/node-config
 
 //load jobboard route
 var jobboard = require('./routes/jobboard');

@@ -14,7 +14,7 @@ exports.list = function(req, res){
 
   req.getConnection(function(err,connection){
 
-        var query = connection.query('SELECT id, title, company, location, dateposted FROM jobboard WHERE dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC ',function(err,rows)
+        var query = connection.query('SELECT id, title, company, location, dateposted FROM jobboard WHERE dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC',function(err,rows)
         {
             
             if(err)
@@ -37,7 +37,7 @@ exports.city = function(req, res){
 
   req.getConnection(function(err,connection){
 
-        var query = connection.query('SELECT id, title, company, category, location, dateposted FROM jobboard WHERE location = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC ',[city],function(err,rows)
+        var query = connection.query('SELECT id, title, company, category, location, dateposted FROM jobboard WHERE location = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC ',[city],function(err,rows)
         {
                 if(!rows[0]){
                         res.status(404);
@@ -58,7 +58,7 @@ exports.citycategory = function(req, res){
 
   req.getConnection(function(err,connection){
 
-        var query = connection.query('SELECT id, title, company, category, location, dateposted FROM jobboard WHERE location = ? AND category = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC ',[city,category],function(err,rows)
+        var query = connection.query('SELECT id, title, company, category, location, dateposted FROM jobboard WHERE location = ? AND category = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC ',[city,category],function(err,rows)
         {
                 if(!rows[0]){
                         res.status(404);

@@ -1,34 +1,36 @@
-<button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target="#pricing-modal">Hiring? Post a job: free for 30 days!</button>
+<button type="button" class="pull-right btn btn-primary" data-toggle="modal" onclick="trackGoal()" data-target="#pricing-modal">Hiring? Post a job: free for 30 days!</button>
 
 <div id="pricing-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Post a job" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content noshadow">        
-        <div class="panel panel-default col-md-offset-2 col-md-6 col-xs-12 text-center plan plan-free">
+        <div class="panel panel-default col-md-offset-2 col-md-6 col-xs-12 text-center plan">
             <div class="panel-heading">Community plan</div>
             <ul class="list-group noshadow">
-                <li class="list-group-item"><strong>Free</strong> for 30 days</li>
+                <li class="list-group-item"><strong>Free listing</strong> for 30 days</li>
                 <li class="list-group-item"><strong>Email</strong> Support</li>
-				<li class="list-group-item"><span class="glyphicon glyphicon-remove"></span> <strong>Foo</strong> bar</li>
-                <li class="list-group-item"><span class="glyphicon glyphicon-remove"></span> <strong>Foo</strong> bar</li>
-                <li class="list-group-item"><span class="glyphicon glyphicon-remove"></span> <strong>Foo</strong> bar</li>
+                <li class="list-group-item">Visible in <strong>One City</strong></li>
+                <li class="list-group-item"><strong>Self-service</strong> submission</li>
+				<li class="list-group-item">Best for <strong>small businesses</strong> </li>
             </ul>
             <div class="panel-footer">
-                <a href="https://tdobson.wufoo.com/forms/submit-a-job-to-pieline/" class="btn btn-default btn-lg">Post now</a>
+                <a href="https://tdobson.wufoo.com/forms/submit-a-job-to-pieline/" id="submit-free" class="btn btn-default btn-lg">Submit Job Now</a>
             </div>
         </div>
-        <div class="panel panel-primary col-md-6 col-md-offset-1 col-xs-12 text-center plan plan-paid">
+        <div class="panel panel-primary col-md-6 col-md-offset-1 col-xs-12 text-center plan">
             <div class="panel-heading">Business plan</div>
             <ul class="list-group noshadow">
                 <li class="list-group-item"><strong>£50</strong> per week per job</li>
-                <li class="list-group-item"><strong>24/7</strong> Support</li>
-				<li class="list-group-item"><span class="text-success glyphicon glyphicon-ok"></span> <strong>Foo</strong> bar</li>
-                <li class="list-group-item"><span class="text-success glyphicon glyphicon-ok"></span> <strong>Foo</strong> bar</li>
-                <li class="list-group-item"><span class="text-success glyphicon glyphicon-ok"></span> <strong>Foo</strong> bar</li>
+                <li class="list-group-item"><span class="text-success glyphicon glyphicon-ok"></span> <strong>24/7</strong> Phone Support</li>
+                <li class="list-group-item"><span class="text-success glyphicon glyphicon-ok"></span> Visible across <strong>all areas</strong></li>
+                <li class="list-group-item"><span class="text-success glyphicon glyphicon-ok"></span> Stats and <strong>analytics</strong></li>
+				<li class="list-group-item">Best for <strong>corporates</strong></li>
+
             </ul>
             <div class="panel-footer">
-                <a href="" class="btn btn-success btn-lg">Post now</a>
+                <a href="mailto:hello@tdobson.net" id="submit-paid" class="btn btn-success btn-lg">Submit Job Now</a>
             </div>
         </div>
+
     </div>
   </div>
 </div>
