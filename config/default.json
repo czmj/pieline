@@ -1,0 +1,11 @@
+{
+  // Customer module configs
+  "Customer": {
+    "dbConfig": {
+      "host": "localhost",
+      "port": 3608,
+      "dbName": "jobboard"
+      "dbUser": "customers"
+    },
+  }
+}
