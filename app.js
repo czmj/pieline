@@ -18,7 +18,6 @@ var connection  = require('express-myconnection');
 var mysql = require('mysql');
 
 // all environments
-app.set('port', process.env.PORT || 4300);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 //app.use(express.favicon());
@@ -31,7 +30,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+	app.use(express.errorHandler());
+	app.set('port', process.env.PORT || 4200);
+	console.log('Development mode');
+}
+else {
+	app.set('port', process.env.PORT || 4300);
+	console.log('Live mode');
 }
 
 /*------------------------------------------

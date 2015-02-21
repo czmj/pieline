@@ -1,8 +1,7 @@
 <%- include layouts/header.ejs %>
 		<!-- wysihtml core javascript with default toolbar functions --> 
 		<script src="/js/wysihtml/dist/wysihtml5x.min.js"></script>
-                <script src="/js/wysihtml/dist/wysihtml5x-toolbar.js"></script>
-
+        <script src="/js/wysihtml/dist/wysihtml5x-toolbar.js"></script>
 
 		<!-- rules defining tags, attributes and classes that are allowed -->
 		<script src="/js/wysihtml/parser_rules/advanced_and_extended.js"></script>
@@ -79,7 +78,25 @@
                 </div>
                 
                 <br>
-                
+
+				<!--<p>Datepicker doesn't work yet. If date posted is not today, input dateposted in the format yyyy-MM-dd. If date posted is today, you can leave this input blank.</p>
+                <script>
+                        $(document).ready(function() {
+                            //$(".datepicker").datepicker({
+                            //	format:'yyyy-mm-dd'
+                            //});
+							
+							var d = new Date();
+							var today = d.toISOString().slice(0,10);
+							document.getElementById('dateposted').placeholder = today;
+                        });
+						
+
+                </script>
+
+			<input type="text" class="datepicker" name="dateposted" id="dateposted" >
+				<br>-->
+				<br>
                 <input class="btn btn-success" type="submit" name="submit" value="Post live!">                 
                 
             </form>

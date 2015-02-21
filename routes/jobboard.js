@@ -1,10 +1,3 @@
-/* 
- *  silly date faff lameness
- */
-
-var today = Date.today().toString("yyyy-MM-dd");
-var month_ago_today = Date.today().addMonths(-1).toString("yyyy-MM-dd");
-
 /*
  * GET front page jobs listing
  */
@@ -12,17 +5,22 @@ var month_ago_today = Date.today().addMonths(-1).toString("yyyy-MM-dd");
 
 exports.list = function(req, res){
 
+	var today = Date.today().toString("yyyy-MM-dd");
+	var month_ago_today = Date.today().addMonths(-1).toString("yyyy-MM-dd");
+
   req.getConnection(function(err,connection){
 
         var query = connection.query('SELECT id, title, company, location, dateposted FROM jobboard WHERE dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC',function(err,rows)
         {
-            
-            if(err)
-                console.log("Error Selecting : %s ",err );
-     
+               if(!rows[0]){
+                        res.status(404);
+                        res.render('404', { url: req.url,page_title:"404: Sorry - Benny Doesn't want you to see this" });
+	                console.log("Error Selecting : %s ",err );
+		        console.log(query.sql);
+
+                }else{     
             res.render('jobboard',{page_title:"Pieline.net Job Board - northern tech jobs for the community by the community",data:rows});
-                
-           
+          	}
          });
 	//console.log(today);
 	//console.log(month_ago_today);
@@ -32,6 +30,9 @@ exports.list = function(req, res){
 };
 
 exports.city = function(req, res){
+
+	var today = Date.today().toString("yyyy-MM-dd");
+	var month_ago_today = Date.today().addMonths(-1).toString("yyyy-MM-dd");
 
   var city = req.params.location;
 
@@ -43,7 +44,7 @@ exports.city = function(req, res){
                         res.status(404);
                         res.render('404', { url: req.url,page_title:"404: Sorry - Benny Doesn't want you to see this" });
                 }else{
-                    res.render('city',{page_title:"Tech Jobs in your city",data:rows});
+                    res.render('city',{page_title:"Tech Jobs in ' + city + '",data:rows});
                 }
 	});
 //        console.log(query.sql);
@@ -52,6 +53,9 @@ exports.city = function(req, res){
 };
 
 exports.citycategory = function(req, res){
+
+	var today = Date.today().toString("yyyy-MM-dd");
+	var month_ago_today = Date.today().addMonths(-1).toString("yyyy-MM-dd");
 
   var city = req.params.location;
   var category = req.params.category;
@@ -64,15 +68,17 @@ exports.citycategory = function(req, res){
                         res.status(404);
                         res.render('404', { url: req.url });
                 }else{
-                    res.render('citycategory',{page_title:"View Job",data:rows});
+                    res.render('citycategory',{data:rows});
                 }
         });
-        console.log(query.sql);
+//        console.log(query.sql);
 
          });
 };
 
 
+	var today = Date.today().toString("yyyy-MM-dd");
+	var month_ago_today = Date.today().addMonths(-1).toString("yyyy-MM-dd");
 
 exports.view = function(req, res){
     
@@ -99,26 +105,6 @@ exports.add = function(req, res){
   res.render('add_new_job',{page_title:"Add New Job"});
 };
 
-/*exports.edit = function(req, res){
-    
-    var vidid = req.params.id;
-    
-    req.getConnection(function(err,connection){
-       
-        var query = connection.query('SELECT * FROM jobboard WHERE vidid = ?',[vidid],function(err,rows)
-        {
-            
-            if(err)
-                console.log("Error Selecting : %s ",err );
-     
-            res.render('edit_media',{page_title:"Edit Media - Node.js",data:rows});
-                
-           
-         });
-         
-         //console.log(query.sql);
-    }); 
-};*/
 
 exports.save = function(req,res){
     
@@ -126,7 +112,7 @@ exports.save = function(req,res){
     console.log(input);
     req.getConnection(function (err, connection) {
 	
-	  if(input.hours==null){
+	if(input.hours==null){
       input.hours=0;
     }
     if(input.contact_mention==null){
@@ -135,10 +121,13 @@ exports.save = function(req,res){
     if(input.contact_recruiters==null){
       input.contact_recruiters=0;
     }
+	if(input.dateposted==null){
+      input.dateposted=today;
+    }
 
 
         var data = {
-            dateposted    : today,
+            dateposted    : input.dateposted,
             title   : input.title,
             company   : input.company,
             location : input.location,
@@ -168,36 +157,6 @@ exports.save = function(req,res){
 };
 
 /*
-exports.save_edit = function(req,res){
-    
-    var input = JSON.parse(JSON.stringify(req.body));
-    var vidid = req.params.id;
-    
-    req.getConnection(function (err, connection) {
-        
-        var data = {
-            
-            title   : input.title,
-            owner   : input.owner,
-            location : input.location,
-            type   : input.type 
-        
-        };
-        
-        connection.query("UPDATE jobboard set ? WHERE vidid = ? ",[data,vidid], function(err, rows)
-        {
-  
-          if (err)
-              console.log("Error Updating : %s ",err );
-         
-          res.redirect('/jobboard');
-          
-        });
-    
-    });
-};
-
-
 exports.delete_jobboard = function(req,res){
           
      var vidid = req.params.id;

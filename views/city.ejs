@@ -3,8 +3,7 @@
 
 
 <div class="list-group col-xs-12 col-md-8">
-        <a href="https://www.bytemark.co.uk/company/employment/" class="list-group-item list-group-item-success">Sponsored link: Bytemark Hosting are hiring in Manchester</a>
-
+        <%- include layouts/sponsored.ejs %>
                 <%  var title
                  	for(var i = 0;i < data.length;i++) { 
                         title=data[i].title.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'-');
