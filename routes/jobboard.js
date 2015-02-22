@@ -41,10 +41,7 @@ exports.city = function(req, res){
         var query = connection.query('SELECT id, title, company, category, location, dateposted FROM jobboard WHERE location = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC ',[city],function(err,rows)
         {
                 if(!rows[0]){
-			res.status(404);
-                        res.render('404', { url: req.url,page_title:"404: Sorry - Benny Doesn't want you to see this" });
-                        console.log("Error Selecting : %s ",err );
-                        console.log(query.sql);
+                        res.render('norecords', { page_title:"Sorry - We don't have any jobs in this location yet" });
                 }else{
 		    
                     res.render('city',{currentlocation:city,page_title:"Tech Jobs in your area",data:rows}); //('development' == app.get('env'))
@@ -68,10 +65,7 @@ exports.citycategory = function(req, res){
         var query = connection.query('SELECT id, title, company, category, location, dateposted FROM jobboard WHERE location = ? AND category = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC ',[city,category],function(err,rows)
         {
                 if(!rows[0]){
-                        res.status(404);
-                        res.render('404', { url: req.url,page_title:"404: Sorry - Benny Doesn't want you to see this" });
-                        console.log("Error Selecting : %s ",err );
-                        console.log(query.sql);
+                        res.render('norecords', { page_title:"Sorry - We don't have any jobs in this category here yet" });
 
                 }else{
                     res.render('citycategory',{currentlocation:city,page_title:"Tech Jobs in your area",data:rows});
