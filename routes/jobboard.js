@@ -123,12 +123,14 @@ exports.save = function(req,res){
 		contact_recruiters=0;
 	}
 	if(input.dateposted==null){
-		dateposted=today;
+	var dateposted=today;
+	}
+	else{
+            var  dateposted=input.dateposted;
 	}
 
-
         var data = {
-            dateposted    : input.dateposted,
+            dateposted    : dateposted,
             title   : input.title,
             company   : input.company,
             location : input.location,

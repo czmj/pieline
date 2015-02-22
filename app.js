@@ -44,8 +44,6 @@ else {
     type koneksi : single,pool and request 
 -------------------------------------------*/
 var dbConfig = config.get('Pieline.dbConfig');
-console.log(dbConfig);
-
 app.use(connection(mysql, dbConfig, 'pool'));
 
 
