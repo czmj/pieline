@@ -3,7 +3,6 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 var date = require('./node_modules/datejs/index.js');
@@ -50,13 +49,7 @@ console.log(dbConfig);
 app.use(connection(mysql, dbConfig, 'pool'));
 
 
-//app.use(connection(mysql,dbConfig,'pool') //or single
-//);
-
-//app.get('/db1/delete/:id', db1.delete_db1);
-//app.get('/db1/edit/:id', db1.edit);
-//app.post('/db1/edit/:id',db1.save_edit);
-
+// HTTP routes
 app.get('/', jobboard.list);
 app.get('/view/:id', jobboard.view);
 app.get('/jobs/:location', jobboard.city);
