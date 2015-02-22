@@ -44,7 +44,8 @@ exports.city = function(req, res){
                         res.status(404);
                         res.render('404', { url: req.url,page_title:"404: Sorry - Benny Doesn't want you to see this" });
                 }else{
-                    res.render('city',{page_title:"Tech Jobs in ' + city + '",data:rows});
+		    
+                    res.render('city',{page_title:"Tech Jobs in your area",data:rows}); //('development' == app.get('env'))
                 }
 	});
 //        console.log(query.sql);
@@ -68,7 +69,7 @@ exports.citycategory = function(req, res){
                         res.status(404);
                         res.render('404', { url: req.url });
                 }else{
-                    res.render('citycategory',{data:rows});
+                    res.render('citycategory',{page_title:"Tech Jobs in your area",data:rows});
                 }
         });
 //        console.log(query.sql);
@@ -113,17 +114,17 @@ exports.save = function(req,res){
     req.getConnection(function (err, connection) {
 	
 	if(input.hours==null){
-      input.hours=0;
-    }
-    if(input.contact_mention==null){
-      input.contact_mention=0;
-    }
-    if(input.contact_recruiters==null){
-      input.contact_recruiters=0;
-    }
+		hours=0;
+	}
+	if(input.contact_mention==null){
+		contact_mention=0;
+	}
+	if(input.contact_recruiters==null){
+		contact_recruiters=0;
+	}
 	if(input.dateposted==null){
-      input.dateposted=today;
-    }
+		dateposted=today;
+	}
 
 
         var data = {

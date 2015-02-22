@@ -7,5 +7,5 @@ if [[ $1 = "live" ]] ; then
 else
 	TYPE=dev
 	echo "Development mode"
-	screen -s $TYPE bash -c "cd /srv/pieline.net/public/htdocs/nodecrud/;echo 'Hit CTRL+C to quit'; NODE_ENV=development node app.js" ;
+	screen -s $TYPE bash -c "cd /srv/pieline.net/public/htdocs/nodecrud/;echo 'Hit CTRL+C to quit'; NODE_ENV=development node app.js;sleep 10" ;
 fi
