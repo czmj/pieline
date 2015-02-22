@@ -99,7 +99,7 @@ exports.view = function(req, res){
                         console.log("Error Selecting : %s ",err );
                         console.log(query.sql);
         	}else{     
-                    res.render('view',{currentlocation:city,page_title:"Here's a job for you",data:rows});
+                    res.render('view',{page_title:"Here's a job for you",data:rows});
                 }        
            
          });
