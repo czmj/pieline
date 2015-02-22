@@ -7,7 +7,8 @@ var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 var date = require('./node_modules/datejs/index.js');
-//var config = require('config'); //  https://github.com/lorenwest/node-config
+var config = require('config'); //  https://github.com/lorenwest/node-config
+
 
 //load jobboard route
 var jobboard = require('./routes/jobboard');
@@ -43,26 +44,15 @@ else {
     connection peer, register as middleware
     type koneksi : single,pool and request 
 -------------------------------------------*/
-app.use(
+var dbConfig = config.get('Pieline.dbConfig');
+console.log(dbConfig);
 
-    connection(mysql,{
-
-  host     : 'localhost',
-  user     : 'root',
-  password : '3degUB7JxZa',
-       port : 3306, //port mysql
-        database:'jobboard'
-
-    },'pool') //or single
-
-);
-
-//app.get('/', routes.index);
-//app.get('/db1', db1.list);
+app.use(connection(mysql, dbConfig, 'pool'));
 
 
-//app.get('/db1/add', db1.add);
-//app.post('/db1/add', db1.save);
+//app.use(connection(mysql,dbConfig,'pool') //or single
+//);
+
 //app.get('/db1/delete/:id', db1.delete_db1);
 //app.get('/db1/edit/:id', db1.edit);
 //app.post('/db1/edit/:id',db1.save_edit);
