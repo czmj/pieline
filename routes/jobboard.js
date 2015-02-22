@@ -19,7 +19,7 @@ exports.list = function(req, res){
 		        console.log(query.sql);
 
                 }else{     
-            res.render('jobboard',{currentlocation:"",page_title:"Pieline.net Job Board - northern tech jobs for the community by the community",data:rows});
+            res.render('jobboard',{,page_title:"Pieline.net Job Board - northern tech jobs for the community by the community",data:rows});
           	}
          });
 	//console.log(today);
@@ -41,7 +41,7 @@ exports.city = function(req, res){
         var query = connection.query('SELECT id, title, company, category, location, dateposted FROM jobboard WHERE location = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC ',[city],function(err,rows)
         {
                 if(!rows[0]){
-                        res.render('norecords', { page_title:"Sorry - We don't have any jobs in this location yet" });
+                        res.render('norecords', {currentlocation:city,page_title:"Sorry - We don't have any jobs in this location yet" });
                 }else{
 		    
                     res.render('city',{currentlocation:city,page_title:"Tech Jobs in your area",data:rows}); //('development' == app.get('env'))
@@ -65,7 +65,7 @@ exports.citycategory = function(req, res){
         var query = connection.query('SELECT id, title, company, category, location, dateposted FROM jobboard WHERE location = ? AND category = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC ',[city,category],function(err,rows)
         {
                 if(!rows[0]){
-                        res.render('norecords', { page_title:"Sorry - We don't have any jobs in this category here yet" });
+                        res.render('norecords', { currentlocation:city,page_title:"Sorry - We don't have any jobs in this category here yet" });
 
                 }else{
                     res.render('citycategory',{currentlocation:city,page_title:"Tech Jobs in your area",data:rows});
