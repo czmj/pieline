@@ -45,7 +45,7 @@ exports.city = function(req, res){
                         res.render('404', { url: req.url,page_title:"404: Sorry - Benny Doesn't want you to see this" });
                 }else{
 		    
-                    res.render('city',{page_title:"Tech Jobs in your area",data:rows}); //('development' == app.get('env'))
+                    res.render('city',{currentlocation:location,page_title:"Tech Jobs in your area",data:rows}); //('development' == app.get('env'))
                 }
 	});
 //        console.log(query.sql);
