@@ -19,7 +19,7 @@ exports.list = function(req, res){
 		        console.log(query.sql);
 
                 }else{     
-            res.render('jobboard',{page_title:"Pieline.net Job Board - northern tech jobs for the community by the community",data:rows});
+            res.render('jobboard',{currentlocation:"",page_title:"Pieline.net Job Board - northern tech jobs for the community by the community",data:rows});
           	}
          });
 	//console.log(today);
@@ -69,7 +69,7 @@ exports.citycategory = function(req, res){
                         res.status(404);
                         res.render('404', { url: req.url });
                 }else{
-                    res.render('citycategory',{page_title:"Tech Jobs in your area",data:rows});
+                    res.render('citycategory',{currentlocation:location,page_title:"Tech Jobs in your area",data:rows});
                 }
         });
 //        console.log(query.sql);
@@ -92,7 +92,7 @@ exports.view = function(req, res){
         		res.status(404);
         		res.render('404', { url: req.url });
         	}else{     
-                    res.render('view',{page_title:"Here's a job for you",data:rows});
+                    res.render('view',{currentlocation:location,page_title:"Here's a job for you",data:rows});
                 }        
            
          });
