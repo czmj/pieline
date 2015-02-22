@@ -19,7 +19,7 @@ exports.list = function(req, res){
 		        console.log(query.sql);
 
                 }else{     
-            res.render('jobboard',{,page_title:"Pieline.net Job Board - northern tech jobs for the community by the community",data:rows});
+            res.render('jobboard',{page_title:"Pieline.net Job Board - northern tech jobs for the community by the community",data:rows});
           	}
          });
 	//console.log(today);
