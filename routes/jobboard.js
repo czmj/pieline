@@ -45,7 +45,7 @@ exports.city = function(req, res){
                         res.render('404', { url: req.url,page_title:"404: Sorry - Benny Doesn't want you to see this" });
                 }else{
 		    
-                    res.render('city',{currentlocation:location,page_title:"Tech Jobs in your area",data:rows}); //('development' == app.get('env'))
+                    res.render('city',{currentlocation:city,page_title:"Tech Jobs in your area",data:rows}); //('development' == app.get('env'))
                 }
 	});
 //        console.log(query.sql);
@@ -69,7 +69,7 @@ exports.citycategory = function(req, res){
                         res.status(404);
                         res.render('404', { url: req.url });
                 }else{
-                    res.render('citycategory',{currentlocation:location,page_title:"Tech Jobs in your area",data:rows});
+                    res.render('citycategory',{currentlocation:city,page_title:"Tech Jobs in your area",data:rows});
                 }
         });
 //        console.log(query.sql);
@@ -92,7 +92,7 @@ exports.view = function(req, res){
         		res.status(404);
         		res.render('404', { url: req.url });
         	}else{     
-                    res.render('view',{currentlocation:location,page_title:"Here's a job for you",data:rows});
+                    res.render('view',{currentlocation:city,page_title:"Here's a job for you",data:rows});
                 }        
            
          });
