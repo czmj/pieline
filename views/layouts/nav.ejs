@@ -30,6 +30,14 @@
     </nav>
 
 </div><!--/end left column-->
+<script>
+	// dynamically activate list items when clicked
+	$(".nav a").on("click", function(){
+	   $(".nav").find(".active").removeClass("active");
+	   $(this).parent().addClass("active");
+	});
+
+</script>
 
 
 
