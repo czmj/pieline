@@ -2,16 +2,14 @@
 <%- include layouts/nav.ejs %>
 
 
-          <%    for(var i = 0;i < data.length;i++) {
+                <%  var title
+                        for(var i = 0;i < data.length;i++) {
                         title=data[i].title.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'-');
                         company=data[i].company
                         location=data[i].location
-                        category=data[i].category
-
                         title=title.replace(/\s+/g, '-');
                         location=location.replace(/\s+/g, '-');
                         company=company.replace(/\s+/g, '-');
-                        category=category.replace(/\s+/g, '-');
                          %>
 
 <div class="list-group col-xs-12 col-md-8">
