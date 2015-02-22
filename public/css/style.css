@@ -38,3 +38,13 @@ body {
 .plan {
     max-width: 300px;	
 }
+
+.navbar-default{
+	background-image:none !important;
+	background-color:#fff !important;
+	box-shadow:none !important;
+	/*border-width:0 !important;	*/
+}
+.navbar{
+	margin:0 !important;
+}
