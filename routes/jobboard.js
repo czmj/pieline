@@ -41,8 +41,10 @@ exports.city = function(req, res){
         var query = connection.query('SELECT id, title, company, category, location, dateposted FROM jobboard WHERE location = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC ',[city],function(err,rows)
         {
                 if(!rows[0]){
-                        res.status(404);
+			res.status(404);
                         res.render('404', { url: req.url,page_title:"404: Sorry - Benny Doesn't want you to see this" });
+                        console.log("Error Selecting : %s ",err );
+                        console.log(query.sql);
                 }else{
 		    
                     res.render('city',{currentlocation:city,page_title:"Tech Jobs in your area",data:rows}); //('development' == app.get('env'))
@@ -67,7 +69,10 @@ exports.citycategory = function(req, res){
         {
                 if(!rows[0]){
                         res.status(404);
-                        res.render('404', { url: req.url });
+                        res.render('404', { url: req.url,page_title:"404: Sorry - Benny Doesn't want you to see this" });
+                        console.log("Error Selecting : %s ",err );
+                        console.log(query.sql);
+
                 }else{
                     res.render('citycategory',{currentlocation:city,page_title:"Tech Jobs in your area",data:rows});
                 }
@@ -89,8 +94,10 @@ exports.view = function(req, res){
        var query = connection.query('SELECT * FROM jobboard WHERE id = ?',[id],function(err,rows)
         { 
         	if(!rows[0]){
-        		res.status(404);
-        		res.render('404', { url: req.url });
+                        res.status(404);
+                        res.render('404', { url: req.url,page_title:"404: Sorry - Benny Doesn't want you to see this" });
+                        console.log("Error Selecting : %s ",err );
+                        console.log(query.sql);
         	}else{     
                     res.render('view',{currentlocation:city,page_title:"Here's a job for you",data:rows});
                 }        
