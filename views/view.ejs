@@ -27,8 +27,40 @@
             <% if(data[0].contact_mention==1){  %>                          
                     <p class="bg-info"><strong>Do feel free to mention</strong> Pieline.net when applying</p>
                 <% } %>
+	<br>
+	<button type="button" class="pull-right btn btn-success" data-toggle="modal" data-target="#contact-modal">Questions? Contact this company anonymously</button>
 
         </div>
 
         
 <%- include layouts/footer.ejs %>
+
+<div id="contact-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content noshadow">
+         <div class="modal-header"><h4 class="modal-title">Ask a question anonymously</h4></div>
+	<form>
+	<div class="modal-body">
+ 		<div class="form-group">
+    			<label for="question">Question:</label>
+    			<textarea required rows="3" class="form-control" id="question" placeholder="Enter your question"></textarea>
+  		</div>
+  		<div class="form-group">
+    			<label for="email">Email <span class="subdued">(optional)</span></label>
+			<a data-toggle="tooltip" data-placement="right" title="If you want, you can give us your email address so we can let you know when your question has been answered. No-one else will be able to see this.">Hey! I thought this was anonymous!</a>
+    			<input type="email" class="form-control" id="email" placeholder="Email address">
+ 		</div>
+	</div>
+         <div class="modal-footer">
+                <button type="submit" id="submit-contact" class="btn btn-primary">Submit</a>
+         </div>
+	</form>
+    </div>
+  </div>
+</div>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
