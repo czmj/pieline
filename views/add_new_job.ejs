@@ -88,9 +88,11 @@
                             //	format:'yyyy-mm-dd'
                             //});
 							
-							var d = new Date();
-							var today = d.toISOString().slice(0,10);
-							document.getElementById('dateposted').placeholder = today;
+					var d = new Date();
+					var today = d.toISOString().slice(0,10);
+					document.getElementById('dateposted').placeholder = today;
+					document.getElementById('dateposted').value = today;
+
                         });
 						
 

@@ -108,6 +108,30 @@ exports.add = function(req, res){
 };
 
 
+exports.speculative = function(req, res){
+
+var speculative=1;
+
+    req.getConnection(function(err,connection){
+       var query = connection.query('SELECT * FROM companies WHERE speculative=?',[speculative],function(err,rows)
+        {
+                if(!rows[0]){
+                        res.status(404);
+                        res.render('404', { url: req.url,page_title:"404: Sorry - Benny Doesn't want you to see this" });
+                        console.log("Error Selecting : %s ",err );
+                        console.log(query.sql);
+                }else{
+			res.render('speculative',{page_title:"Tech Companies Open to Speculative Applications",data:rows});
+                }
+
+         });
+
+         //console.log(query.sql);
+    });
+};
+
+
+
 exports.save = function(req,res){
     
     var input = JSON.parse(JSON.stringify(req.body));

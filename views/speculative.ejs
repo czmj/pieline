@@ -1,21 +1,77 @@
-<h2>Liverpool</h2>
+<%- include layouts/header.ejs %>
 
-    <ul>
-		<li><a href="http://www.studiomashbo.com/work-for-us">Studio Mashbo</a></li>
-	</ul>
+<h1>Companies open to speculative applications</h1>
+<div class="panel panel-default">
+<div class="panel-heading"><h4>Lancaster</h4></div>
+<div class="list-group">
+        <%
+            for(var i = 0;i < data.length;i++) {
+                if(data[i].locationID===5){  %>
+                        <a href="<%=data[i].homepage%>" class="list-group-item"><%=data[i].company_name%></a>
+            <% } %>
 
-<h2>Manchester</h2>
+       <%}%>
+</div>
+</div>
 
-    <ul>
-		<li><a href="http://madebyshape.co.uk/blog/do-you-want-a-placement-at-shape">Shape</a></li>
-	</ul>
+<div class="panel panel-default">
+<div class="panel-heading"><h4>Leeds</h4></div>
+<div class="list-group">
+        <%
+            for(var i = 0;i < data.length;i++) {
+                if(data[i].locationID===4){  %>
+                        <a href="<%=data[i].homepage%>" class="list-group-item"><%=data[i].company_name%></a>
+            <% } %>
+
+       <%}%>
+
+</div>
+</div>
+
+<div class="panel panel-default">
+<div class="panel-heading"><h4>Liverpool</h4></div>
+<div class="list-group">
+        <%
+            for(var i = 0;i < data.length;i++) {
+                if(data[i].locationID===3){  %>
+                        <a href="<%=data[i].homepage%>" class="list-group-item"><%=data[i].company_name%></a>
+            <% } %>
+
+       <%}%>
+
+</div>
+</div>
 
 
-<h2>Sheffield</h2>
+<div class="panel panel-default">
+<div class="panel-heading"><h4>Manchester</h4></div>
+<div class="list-group">
+	<%  
+            for(var i = 0;i < data.length;i++) {
+       		if(data[i].locationID===1){  %>
+			<a href="<%=data[i].homepage%>" class="list-group-item"><%=data[i].company_name%></a>
+            <% } %>
 
-    <ul>
-		<li><a href="http://rckt.co.uk/prospective">Rocket</a></li>
-	</ul>
+       <%}%>
 
+</div>
+</div>
 
+<div class="panel panel-default">
+<div class="panel-heading"><h4>Sheffield</h4></div>
+<div class="list-group">
+        <%
+            for(var i = 0;i < data.length;i++) {
+                if(data[i].locationID===2){  %>
+                        <a href="<%=data[i].homepage%>" class="list-group-item"><%=data[i].company_name%></a>
+            <% } %>
+
+       <%}%>
+
+</div>
+</div>
+
+Contact us (links in the footer) to get your company added to this list.
+
+<%- include layouts/footer.ejs %>
 

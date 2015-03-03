@@ -53,14 +53,12 @@ app.get('/jobs/:location', jobboard.city);
 app.get('/jobs/:location/:category', jobboard.citycategory);
 app.get('/jobs/:location/:id/:title_:company', jobboard.view);
 app.get('/jobs/:location/:id/:title_:company', jobboard.view);
+app.get('/speculative', jobboard.speculative);
 
 
 // private funktions
 app.get('/admin/add', jobboard.add);
 app.post('/admin/add', jobboard.save);
-//app.get('/admin/delete/:id', db1.delete_db1);
-//app.get('/admin/edit/:id', db1.edit);
-//app.post('/admin/edit/:id',db1.save_edit);
 
 //Captcha POST function - see https://jaxbot.me/articles/new-nocaptcha-recaptcha-with-node-js-express-12-9-2014
 app.post('/jobs/:location/:id/contact', function(req, res) {
