@@ -13,31 +13,24 @@
             <ul class="nav nav-pills nav-stacked">
 
 
-                <% /* EXPERIMENTAL
+                <% /* EXPERIMENTAL */
 
-  var nav
-                        for(var i = {Manchester, Sheffield, Liverpool, Leeds};i < data.length;i++) {
-			if data[i] === location %>
+		var navarray = ["Sheffield", "Manchester", "Liverpool", Leeds"];
+                        for(var navarray ;i < navarray.length;i++) {
+			if (navarray[i] === location){ %>
 
-<a href="/jobs/<%=location%>/<%=data[i].id%>/<%=title%>-at-<%=company%>" class="list-group-item active">
-                    <%=data[i].title%>
-                    at <%=data[i].company%>
-                </a>
-                        <%}%>
+                                <li id="<%=navarray[i]=%>" role="presentation" class="active"><a href="/jobs/<%=navarray[i]=%>"><%=navarray[i]=%></a></li>
 
-		<% else %>
+		<%} else{ %>
 
-<a href="/jobs/<%=location%>/<%=data[i].id%>/<%=title%>-at-<%=company%>" class="list-group-item">
-                    <%=data[i].title%>
-                    at <%=data[i].company%>
-                        <%} */ %>
+                                <li id="<%=navarray[i]=%>" role="presentation" ><a href="/jobs/<%=navarray[i]=%>"><%=navarray[i]=%></a></li>
 
-
-
+                <%}  %>
+<!--
 				<li id="Manchester" role="presentation"><a href="/jobs/Manchester">Manchester</a></li>
 				<li id="Sheffield" role="presentation"><a href="/jobs/Sheffield">Sheffield</a></li>
 				<li id="Liverpool" role="presentation"><a href="/jobs/Liverpool">Liverpool</a></li>
-				<li id="Leeds" role="presentation"><a href="/jobs/Leeds">Leeds</a></li>
+				<li id="Leeds" role="presentation"><a href="/jobs/Leeds">Leeds</a></li>-->
         			<br>
 	    </ul>
 

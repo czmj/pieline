@@ -1,12 +1,3 @@
-function addUser(){
-            
-    window.location.href = '/db1/add';
-}
-function cancelAdd(){
-    
-    window.location.href = '/db1';
-}
-
 // dynamically activate list items when clicked
 $( document ).ready(function() {
         var href=window.location.href.split("/");;
@@ -15,7 +6,7 @@ $( document ).ready(function() {
 
         $(".nav").find(".active").removeClass("active");
 
-        //select city
+/*        //select city
         if (city==="Manchester"){
                 $("#Manchester").addClass("active");
         }else if(city==="Sheffield"){
@@ -24,7 +15,7 @@ $( document ).ready(function() {
                 $("#Leeds").addClass("active");
         }else if(city==="Liverpool"){
         	$("#Liverpool").addClass("active");
-	}
+	}*/
 
 	//select category
 	if(category==="Development"){
