@@ -19,31 +19,13 @@
 				<li id="Sheffield" role="presentation"><a href="/jobs/Sheffield">Sheffield</a></li>
 				<li id="Liverpool" role="presentation"><a href="/jobs/Liverpool">Liverpool</a></li>
 				<li id="Leeds" role="presentation"><a href="/jobs/Leeds">Leeds</a></li>
-            </ul>
+        			<br>
+	    </ul>
 
 
         </div><!-- /.navbar-collapse -->
     </nav>
 
 </div><!--/end left column-->
-<script>
-	// dynamically activate list items when clicked
-	$( document ).ready(function() {
-		var href=window.location.href;
-		var city=href.slice(24);
-	  	$(".nav").find(".active").removeClass("active");
-	   	if (city==="Manchester"){
-			$("#Manchester").addClass("active");
-		}else if(city==="Sheffield"){
-			$("#Sheffield").addClass("active");
-		}else if(city==="Leeds"){
-			$("#Leeds").addClass("active");
-		}else if(city==="Liverpool"){
-			$("#Liverpool").addClass("active");
-		}
-	});
-
-</script>
-
 
 
