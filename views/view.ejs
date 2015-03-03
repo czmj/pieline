@@ -28,9 +28,7 @@
                     <p class="bg-info"><strong>Do feel free to mention</strong> Pieline.net when applying</p>
                 <% } %>
 	<br>
-<!--button commented out until backend is done
 <button type="button" class="pull-right btn btn-success" data-toggle="modal" data-target="#contact-modal">Questions? Contact this company anonymously</button>
--->
         </div>
         
 <%- include layouts/footer.ejs %>
@@ -39,7 +37,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content noshadow">
          <div class="modal-header"><h4 class="modal-title">Ask a question anonymously</h4></div>
-	<form>
+	<form action="contact" method="post">
 	<div class="modal-body">
  		<div class="form-group">
     			<label for="question">Question:</label>

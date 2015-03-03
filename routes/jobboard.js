@@ -124,10 +124,10 @@ exports.save = function(req,res){
 		contact_recruiters=0;
 	}
 	if(input.dateposted==null){
-	var dateposted=today;
+		dateposted=today;
 	}
 	else{
-            var  dateposted=input.dateposted;
+             dateposted=input.dateposted;
 	}
 
         var data = {
