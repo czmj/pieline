@@ -61,7 +61,7 @@ app.get('/admin/add', jobboard.add);
 app.post('/admin/add', jobboard.save);
 
 //Captcha POST function - see https://jaxbot.me/articles/new-nocaptcha-recaptcha-with-node-js-express-12-9-2014
-app.post('/jobs/:location/:id/contact', function(req, res) {
+/*app.post('/jobs/:location/:id/contact', function(req, res) {
 	verifyRecaptcha(req.body["g-recaptcha-response"], function(success) {
 		if (success) {
 			res.end("Success!");
@@ -74,13 +74,13 @@ app.post('/jobs/:location/:id/contact', function(req, res) {
 	});
 }); 
 
-
+*/
 app.use(app.router);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
-
+/*
 var SECRET="6Ldj0QITAAAAAGAMnsaopoCqQoOFWWXEcvp4nVUg";
 var key = "6Ldj0QITAAAAAFHydr_T6uSRvLFr6hVeCzoBMufi";
 // Helper function to make API call to recatpcha and check response
@@ -100,3 +100,4 @@ function verifyRecaptcha(key, callback) {
 		});
 	});
 } 
+*/

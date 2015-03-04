@@ -113,7 +113,7 @@ exports.speculative = function(req, res){
 var speculative=1;
 
     req.getConnection(function(err,connection){
-       var query = connection.query('SELECT * FROM companies WHERE speculative=?',[speculative],function(err,rows)
+       var query = connection.query('SELECT * FROM companies WHERE speculative=? ORDER BY company_name',[speculative],function(err,rows)
         {
                 if(!rows[0]){
                         res.status(404);
