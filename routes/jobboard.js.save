@@ -229,9 +229,10 @@ exports.contact = function(req,res){
 
 };
 exports.questions = function(req, res){
+  res.render('question_list',{page_title:"Unsent questions"});
 
-req.getConnection(function(err,connection){
-       var query = connection.query('SELECT * FROM questions WHERE sent=0',function(err,rows)
+  req.getConnection(function(err,connection){
+       var query = connection.query('SELECT * FROM companies WHERE speculative=1 ORDER BY company_name',function(err,rows)
         {
                 if(!rows[0]){
                         res.status(404);
@@ -239,34 +240,10 @@ req.getConnection(function(err,connection){
                         console.log("Error Selecting : %s ",err );
                         console.log(query.sql);
                 }else{
-                        res.render('questions',{page_title:"Unsent questions",data:rows});
+                        res.render('speculative',{page_title:"North-West tech companies aceepting speculative applications",data:rows});
                 }
 
          });
+
+         //console.log(query.sql);
     });
-};
-
-exports.upcoming = function(req, res){
-
-        var today = Date.today().toString("yyyy-MM-dd");
-	var month_from_today = Date.today().addMonths(1).toString("yyyy-MM-dd");
-
-  req.getConnection(function(err,connection){
-
-	var query = connection.query('SELECT * FROM jobboard WHERE dateposted between DATE("' + today + '") AND DATE("' + month_from_today + '")ORDER BY dateposted, id',function(err,rows)
-
-        {
-               if(!rows[0]){
-                        res.status(404);
-                        res.render('404', { url: req.url,page_title:"404: Sorry - Benny Doesn't want you to see this" });
-                        console.log("Error Selecting : %s ",err );
-                        console.log(query.sql);
-
-                }else{
-            res.render('upcoming',{page_title:"Jobs appearing in the next 30 days",data:rows});
-                }
-         });
-    });
-
-};
-

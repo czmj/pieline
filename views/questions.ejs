@@ -1,0 +1,26 @@
+<%- include layouts/header.ejs %>
+
+<h1>Unsent questions</h1>
+<br>
+<table class="table">
+  <tr>
+	<th>questionID</th>
+	<th>jobID</th>
+	<th>company</th>
+	<th>email</th>
+	<th>question</th>
+  </tr>
+        <%
+            for(var i = 0;i < data.length;i++) { %>
+		<tr>
+			<td><%=data[i].questionID%></td>
+			<td><%=data[i].jobID%></td>
+			<td><%=data[i].company%></td>
+			<td><%=data[i].email%></td>
+			<td><%=data[i].question%></td>
+       		</tr>
+	<%}%>
+</table>
+
+<%- include layouts/footer.ejs %>
+

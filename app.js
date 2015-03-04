@@ -4,6 +4,7 @@
 
 var express = require('express');
 var http = require('http');
+var https = require('https');
 var path = require('path');
 var date = require('./node_modules/datejs/index.js');
 var config = require('config'); //  https://github.com/lorenwest/node-config
@@ -58,46 +59,13 @@ app.get('/speculative', jobboard.speculative);
 
 // private funktions
 app.get('/admin/add', jobboard.add);
+app.get('/admin/questions', jobboard.questions);
+app.get('/admin/upcoming', jobboard.upcoming);
 app.post('/admin/add', jobboard.save);
+app.post('/contact/:company/:id', jobboard.contact);
 
-//Captcha POST function - see https://jaxbot.me/articles/new-nocaptcha-recaptcha-with-node-js-express-12-9-2014
-/*app.post('/jobs/:location/:id/contact', function(req, res) {
-	verifyRecaptcha(req.body["g-recaptcha-response"], function(success) {
-		if (success) {
-			res.end("Success!");
-			// TODO: do registration using params in req.body
-		} else {
-		res.end("Captcha failed, sorry.");
-			// TODO: take them back to the previous page
-			// and for the love of everyone, restore their inputs
-		}
-	});
-}); 
-
-*/
 app.use(app.router);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
-/*
-var SECRET="6Ldj0QITAAAAAGAMnsaopoCqQoOFWWXEcvp4nVUg";
-var key = "6Ldj0QITAAAAAFHydr_T6uSRvLFr6hVeCzoBMufi";
-// Helper function to make API call to recatpcha and check response
-function verifyRecaptcha(key, callback) {
-	https.get("https://www.google.com/recaptcha/api/siteverify?secret=" + SECRET + "&response=" + key, function(res) {
-		var data = "";
-		res.on('data', function (chunk) {
-			data += chunk.toString();
-		});
-		res.on('end', function() {
-			try {
-				var parsedData = JSON.parse(data);
-				callback(parsedData.success);
-			} catch (e) {
-				callback(false);
-			}
-		});
-	});
-} 
-*/
