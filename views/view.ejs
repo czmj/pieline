@@ -33,32 +33,18 @@
 
             <hr>
 
+	     <%- include layouts/jobquestion.ejs %>
+
+            <hr>
+
     		<h3> Sound like your thing? Here's how you get in touch:</h3>
             <p> <%-data[0].contact_details%></p>
             <% if(data[0].contact_mention==1){  %>                          
                     <p class="bg-info"><strong>Do feel free to mention</strong> Pieline.net when applying</p>
                 <% } %>
 
-	<br>
-
-        <%- include layouts/jobquestion.ejs %>
 
 <%- include layouts/footer.ejs %>
 
 
 
-<script>
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-
-$( document ).ready(function() {
-	var href=window.location.href.split("?");
-	var status=href[1];
-	if (status==='ok'){
-		$( "#submit-successful" ).slideDown(1000);
-	}else{
-		$( "#submit-successful" ).hide();
-	}		
-});
-</script>

@@ -27,3 +27,21 @@
 </div>
 
 
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+$( document ).ready(function() {
+        var href=window.location.href.split("?");
+        var status=href[1];
+        if (status==='ok'){
+                $( "#submit-successful" ).slideDown(1000);
+        }else{
+                $( "#submit-successful" ).hide();
+        }
+});
+</script>
+
+
