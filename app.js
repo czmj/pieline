@@ -62,7 +62,7 @@ app.get('/admin/add', jobboard.add);
 app.get('/admin/questions', jobboard.questions);
 app.get('/admin/upcoming', jobboard.upcoming);
 app.post('/admin/add', jobboard.save);
-app.post('/contact/:company/:id', jobboard.contact);
+app.post('/contact/:location/:id/:company/:title', jobboard.contact);
 
 app.use(app.router);
 

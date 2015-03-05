@@ -1,6 +1,6 @@
 // dynamically activate list items when clicked
 $( document ).ready(function() {
-        var href=window.location.href.split("/");;
+        var href=window.location.href.split("/");
         var city=href[4];
         var category=href[5];
 

@@ -1,7 +1,13 @@
 <%- include layouts/header.ejs %>
 
         <div class="view-job">
-            <h1 class="job-title"><%=data[0].title%> job at <a href="<%=data[0].url%>"><%=data[0].company%></a></h1>
+
+	<div hidden id="submit-successful" class="alert alert-success">
+        	<a href="#" class="close" data-dismiss="alert">&times;</a>
+        	<p>Your question was submitted successfully</p>
+	</div>
+        
+	    <h1 class="job-title"><%=data[0].title%> job at <a href="<%=data[0].url%>"><%=data[0].company%></a></h1>
             <p>This is a<strong>
             <% if(data[0].hours==1){  %>                         
                  Contract
@@ -40,7 +46,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content noshadow">
          <div class="modal-header"><h4 class="modal-title">Ask a question anonymously</h4></div>
-	<form action="/contact/<%- data[0].company.replace(/[&\/\\#,+()$~%.'" :*?<>{}]/g,'-')%>/<%- data[0].id%>" method="post">
+	<form action="/contact/<%- data[0].location%>/<%- data[0].id%>/<%- data[0].company%>/<%- data[0].title%>" method="post">
 	<div class="modal-body">
  		<div class="form-group">
     			<label for="question">Question:</label>
@@ -61,8 +67,19 @@
   </div>
 </div>
 
+
 <script>
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
+
+$( document ).ready(function() {
+	var href=window.location.href.split("?");
+	var status=href[1];
+	if (status==='ok'){
+		$( "#submit-successful" ).slideDown(1000);
+	}else{
+		$( "#submit-successful" ).hide();
+	}		
+});
 </script>
