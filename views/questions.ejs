@@ -4,22 +4,44 @@
 <br>
 <table class="table">
   <tr>
-	<th>questionID</th>
 	<th>job</th>
 	<th>company</th>
 	<th>email</th>
 	<th>question</th>
   </tr>
         <%
-            for(var i = 0;i < data.length;i++) { %>
+            for(var i = 0;i < data.length;i++) { 
+		if(data[i].sent===0){%>
 		<tr>
-			<td><%=data[i].questionID%></td>
 			<td><a href="/view/<%=data[i].jobID%>"><%=data[i].jobID%></a></td>
 			<td><%=data[i].company%></td>
 			<td><%=data[i].email%></td>
 			<td><%=data[i].question%></td>
        		</tr>
-	<%}%>
+		<%}
+	}%>
+</table>
+
+<h1>Sent questions</h1>
+<br>
+<table class="table">
+  <tr>
+        <th>job</th>
+        <th>company</th>
+        <th>email</th>
+        <th>question</th>
+  </tr>
+        <%
+            for(var i = 0;i < data.length;i++) { 
+                if(data[i].sent===1){%>
+                <tr>
+                        <td><a href="/view/<%=data[i].jobID%>"><%=data[i].jobID%></a></td>
+                        <td><%=data[i].company%></td>
+                        <td><%=data[i].email%></td>
+                        <td><%=data[i].question%></td>
+                </tr>
+                <%}
+        }%>
 </table>
 
 <%- include layouts/footer.ejs %>

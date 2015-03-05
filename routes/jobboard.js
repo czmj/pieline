@@ -228,7 +228,7 @@ exports.contact = function(req,res){
 exports.questions = function(req, res){
 
 req.getConnection(function(err,connection){
-       var query = connection.query('SELECT * FROM questions WHERE sent=0',function(err,rows)
+       var query = connection.query('SELECT * FROM questions ORDER BY questionID',function(err,rows)
         {
                 if(!rows[0]){
                         res.status(404);
@@ -236,7 +236,7 @@ req.getConnection(function(err,connection){
                         console.log("Error Selecting : %s ",err );
                         console.log(query.sql);
                 }else{
-                        res.render('questions',{page_title:"Unsent questions",data:rows});
+                        res.render('questions',{page_title:"/admin/questions",data:rows});
                 }
 
          });
