@@ -1,0 +1,29 @@
+<button type="button" class="pull-right btn btn-success" data-toggle="modal" data-target="#contact-modal">Questions? Contact this company anonymously</button>
+    </div>
+
+<div id="contact-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content noshadow">
+         <div class="modal-header"><h4 class="modal-title">Ask a question anonymously</h4></div>
+        <form action="/contact/<%- data[0].location%>/<%- data[0].id%>/<%- data[0].title.replace(/[&\/\\#,+()$~%. '":*?<>{}]/g,'-')%>/<%- data[0].company.replace(/[&\/\\#,+()$~%. '":*?<>{}]/g,'-')%>" method="post">
+        <div class="modal-body">
+                <div class="form-group">
+                        <label for="question">Question:</label>
+                        <textarea required rows="3" class="form-control" id="question" name="question" placeholder="Enter your question"></textarea>
+                </div>
+                <div class="form-group">
+                        <label for="email">Email <span class="subdued">(optional)</span></label>
+                        <a data-toggle="tooltip" data-placement="right" title="If you want, you can give us your email address so we can let you know when your question has been answered. No-one $
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email address">
+                </div>
+        <div class="g-recaptcha" data-sitekey="6Ldj0QITAAAAAFHydr_T6uSRvLFr6hVeCzoBMufi"></div>
+        </div>
+         <div class="modal-footer">
+                <button type="submit" id="submit-contact" class="btn btn-primary">Submit</a>
+         </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+
