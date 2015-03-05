@@ -43,6 +43,7 @@ else {
     type koneksi : single,pool and request 
 -------------------------------------------*/
 var dbConfig = config.get('Pieline.dbConfig');
+
 app.use(connection(mysql, dbConfig, 'pool'));
 
 
@@ -60,19 +61,8 @@ app.get('/speculative', jobboard.speculative);
 app.get('/admin/add', jobboard.add);
 app.post('/admin/add', jobboard.save);
 
-//Captcha POST function - see https://jaxbot.me/articles/new-nocaptcha-recaptcha-with-node-js-express-12-9-2014
-app.post('/jobs/:location/:id/contact', function(req, res) {
-	verifyRecaptcha(req.body["g-recaptcha-response"], function(success) {
-		if (success) {
-			res.end("Success!");
-			// TODO: do registration using params in req.body
-		} else {
-		res.end("Captcha failed, sorry.");
-			// TODO: take them back to the previous page
-			// and for the love of everyone, restore their inputs
-		}
-	});
-}); 
+
+app.feedbackpost('/jobs/:location/:id/contact', jobboard.feedbackpostpost); //Captcha POST function - see https://jaxbot.me/articles/new-nocaptcha-recaptcha-with-node-js-express-12-9-2014
 
 
 app.use(app.router);
@@ -81,22 +71,3 @@ http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-var SECRET="6Ldj0QITAAAAAGAMnsaopoCqQoOFWWXEcvp4nVUg";
-var key = "6Ldj0QITAAAAAFHydr_T6uSRvLFr6hVeCzoBMufi";
-// Helper function to make API call to recatpcha and check response
-function verifyRecaptcha(key, callback) {
-	https.get("https://www.google.com/recaptcha/api/siteverify?secret=" + SECRET + "&response=" + key, function(res) {
-		var data = "";
-		res.on('data', function (chunk) {
-			data += chunk.toString();
-		});
-		res.on('end', function() {
-			try {
-				var parsedData = JSON.parse(data);
-				callback(parsedData.success);
-			} catch (e) {
-				callback(false);
-			}
-		});
-	});
-} 
