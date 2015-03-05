@@ -56,13 +56,12 @@ app.get('/jobs/:location/:id/:title_:company', jobboard.view);
 app.get('/jobs/:location/:id/:title_:company', jobboard.view);
 app.get('/speculative', jobboard.speculative);
 
-
 // private funktions
 app.get('/admin/add', jobboard.add);
 app.get('/admin/questions', jobboard.questions);
 app.get('/admin/upcoming', jobboard.upcoming);
 app.post('/admin/add', jobboard.save);
-app.post('/contact/:location/:id/:company/:title', jobboard.contact);
+app.post('/contact/:location/:id/:title/:company', jobboard.contact);
 
 app.use(app.router);
 

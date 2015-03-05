@@ -5,7 +5,7 @@
 <table class="table">
   <tr>
 	<th>questionID</th>
-	<th>jobID</th>
+	<th>job</th>
 	<th>company</th>
 	<th>email</th>
 	<th>question</th>
@@ -14,7 +14,7 @@
             for(var i = 0;i < data.length;i++) { %>
 		<tr>
 			<td><%=data[i].questionID%></td>
-			<td><%=data[i].jobID%></td>
+			<td><a href="/view/<%=data[i].jobID%>"><%=data[i].jobID%></a></td>
 			<td><%=data[i].company%></td>
 			<td><%=data[i].email%></td>
 			<td><%=data[i].question%></td>

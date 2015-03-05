@@ -77,23 +77,18 @@ exports.citycategory = function(req, res){
 	var month_ago_today = Date.today().addMonths(-1).toString("yyyy-MM-dd");
 
 exports.view = function(req, res){
-    
-    var id = req.params.id;
-    var city = req.params.location;
-    var category = req.params.category;
-    var title = req.params.title;
-    var company = req.params.company;
+	var id = req.params.id;    
 
     req.getConnection(function(err,connection){
        var query = connection.query('SELECT * FROM jobboard WHERE id = ?',[id],function(err,rows)
-        { 
+        {	    
         	if(!rows[0]){
                         res.status(404);
                         res.render('404', { url: req.url,page_title:"404: Sorry - Benny Doesn't want you to see this" });
                         console.log("Error Selecting : %s ",err );
                         console.log(query.sql);
         	}else{     
-                    res.render('view',{page_title:title+" job at "+company+" in "+city,data:rows});
+                    res.render('view',{page_title:rows[0].title+" at "+rows[0].company+" in "+rows[0].location,data:rows});
                 }        
            
          });
@@ -206,6 +201,10 @@ function verifyRecaptcha(key, callback) {
 exports.contact = function(req,res){
 	var input = JSON.parse(JSON.stringify(req.body));
 	var key = "6Ldj0QITAAAAAFHydr_T6uSRvLFr6hVeCzoBMufi";
+	var id = req.params.id;
+	var location = req.params.location;
+	var title = req.params.title;
+	var company= req.params.company;
 	verifyRecaptcha(req.body["g-recaptcha-response"], function(success) {
 		if (success) {
 			req.getConnection(function (err, connection) {
@@ -219,11 +218,8 @@ exports.contact = function(req,res){
 					if (err) console.log("Error inserting : %s ",err );
 				});
 			});
-			var id = req.params.id;
-			var location = req.params.location;
-			var title = req.params.title.replace(/[&\/\\#,+()$~%. '":*?<>{}]/g,'-');
-			var company= req.params.company.replace(/[&\/\\#,+()$~%. '":*?<>{}]/g,'-');
-			res.redirect('jobs/'+location+'/'+id+'/'+title+'-at-'+company+'?ok');
+		res.redirect('jobs/'+location+'/'+id+'/'+title+'-at-'+company+'?ok');
+
 		} else {
 			res.end('Captcha failed, sorry')
 		}
@@ -270,4 +266,3 @@ exports.upcoming = function(req, res){
     });
 
 };
-

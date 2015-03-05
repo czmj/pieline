@@ -50,7 +50,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content noshadow">
          <div class="modal-header"><h4 class="modal-title">Ask a question anonymously</h4></div>
-	<form action="/contact/<%- data[0].location%>/<%- data[0].id%>/<%- data[0].company%>/<%- data[0].title%>" method="post">
+	<form action="/contact/<%- data[0].location%>/<%- data[0].id%>/<%- data[0].title.replace(/[&\/\\#,+()$~%. '":*?<>{}]/g,'-')%>/<%- data[0].company.replace(/[&\/\\#,+()$~%. '":*?<>{}]/g,'-')%>" method="post">
 	<div class="modal-body">
  		<div class="form-group">
     			<label for="question">Question:</label>
