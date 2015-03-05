@@ -34,13 +34,13 @@ exports.city = function(req, res){
 
   req.getConnection(function(err,connection){
 
-        var query = connection.query('SELECT id, title, company, category, location, dateposted FROM jobboard WHERE location = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC ',[city],function(err,rows)
+        var query = connection.query('SELECT * FROM jobboard WHERE location = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC ',[city],function(err,rows)
         {
                 if(!rows[0]){
-                        res.render('norecords', {currentlocation:city,page_title:"Sorry - We don't have any jobs in this location yet" });
+                        res.render('city', {currentlocation:city ,page_title:"Sorry - We don't have any jobs in this location yet",data:0 });
                 }else{
 		    
-                    res.render('city',{currentlocation:city,page_title:"Tech Jobs in your area",data:rows}); //('development' == app.get('env'))
+                    res.render('city',{currentlocation:city, page_title:"Tech Jobs in your area",data:rows}); //('development' == app.get('env'))
                 }
 	});
 //        console.log(query.sql);
@@ -61,10 +61,10 @@ exports.citycategory = function(req, res){
         var query = connection.query('SELECT id, title, company, category, location, dateposted FROM jobboard WHERE location = ? AND category = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC ',[city,category],function(err,rows)
         {
                 if(!rows[0]){
-                        res.render('norecords', { currentlocation:city,page_title:"Sorry - We don't have any jobs in this category here yet" });
+                        res.render('citycategory', { data:0, currentlocation:city, category:category, page_title:"Sorry - We don't have any jobs in this category here yet", });
 
                 }else{
-                    res.render('citycategory',{currentlocation:city,page_title:"Tech Jobs in your area",data:rows});
+                    res.render('citycategory',{currentlocation:city, category:category, page_title:"Tech Jobs in your area",data:rows});
                 }
         });
 //        console.log(query.sql);

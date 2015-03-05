@@ -1,10 +1,9 @@
 <%- include layouts/header.ejs %>
 <ol class="breadcrumb">
         <li><a href="/">Home</a></li>
-        <li><a href="/jobs/<%=data[0].location%>"><%=data[0].location%></a></li>
-        <li><%=data[0].category%></li>
+	<li><a href="/jobs/<%=currentlocation%>"><%=currentlocation%></a></li>
+        <li class="active"><%=category%></li>
 </ol>
-
 <br>
 <div class="col-md-3">
         <%- include layouts/nav.ejs %>
@@ -17,8 +16,11 @@
 <div class="list-group col-xs-12 col-lg-7">
         <a href="https://www.bytemark.co.uk/company/employment/" class="list-group-item list-group-item-success">Sponsored link: Bytemark Hosting are hiring in Manchester</a>
 
-                <%  var title
+                <%  if (!data[0]){%>
+			<p class="list-group-item">Sorry, we don't currently have any <%=category.toLowerCase()%> jobs in <%=currentlocation%></p>
+		<% }else{
                  	for(var i = 0;i < data.length;i++) { 
+			var title
                         title=data[i].title.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'-');
                         company=data[i].company
                         location=data[i].location
@@ -30,7 +32,7 @@
                     <%=data[i].title%>
                     at <%=data[i].company%>
                 </a>
-			<%}%>
+			<%}}%>
 
 </div>
 

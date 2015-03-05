@@ -1,7 +1,7 @@
 <%- include layouts/header.ejs %>
 <ol class="breadcrumb">
-	<li><a href="/">Home</a></li>
-        <li class="active"><%=data[0].location%></li>
+        <li><a href="/">Home</a></li>
+        <li class="active"><%=currentlocation%></li>
 </ol>
 
 
@@ -17,7 +17,10 @@
 <div class="list-group col-xs-12 col-lg-7">
         <%- include layouts/sponsored.ejs %>
 
-                <%  var title
+                <% if (!data[0]){%>
+                        <p class="list-group-item">Sorry, we don't currently have any jobs in <%=currentlocation%></p>
+                <% }else{
+			var title
                         for(var i = 0;i < data.length;i++) {
                         title=data[i].title.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'-');
                         company=data[i].company
@@ -32,7 +35,7 @@
                     at <%=data[i].company%>
                 </a>
 
-			<%}%>
+			<%}}%>
 
 </div>
 
