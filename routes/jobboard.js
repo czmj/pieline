@@ -37,10 +37,10 @@ exports.city = function(req, res){
         var query = connection.query('SELECT * FROM jobboard WHERE location = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC ',[city],function(err,rows)
         {
                 if(!rows[0]){
-                        res.render('city', {currentlocation:city ,page_title:"Sorry - We don't have any jobs in this location yet",data:0 });
+                        res.render('city', {currentlocation:city ,page_title:"Sorry - we don't have any jobs in"+city+" yet",data:0 });
                 }else{
 		    
-                    res.render('city',{currentlocation:city, page_title:"Tech Jobs in your area",data:rows}); //('development' == app.get('env'))
+                    res.render('city',{currentlocation:city, page_title:"Tech jobs in "+city,data:rows});
                 }
 	});
 //        console.log(query.sql);
@@ -61,10 +61,10 @@ exports.citycategory = function(req, res){
         var query = connection.query('SELECT id, title, company, category, location, dateposted FROM jobboard WHERE location = ? AND category = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC ',[city,category],function(err,rows)
         {
                 if(!rows[0]){
-                        res.render('citycategory', { data:0, currentlocation:city, category:category, page_title:"Sorry - We don't have any jobs in this category here yet", });
+                        res.render('citycategory', { data:0, currentlocation:city, category:category, page_title:"Sorry - we don't have any "+category.toLowerCase()+"  jobs in "+city+"  yet", });
 
                 }else{
-                    res.render('citycategory',{currentlocation:city, category:category, page_title:"Tech Jobs in your area",data:rows});
+                    res.render('citycategory',{currentlocation:city, category:category, page_title:category+" jobs in "+city,data:rows});
                 }
         });
 //        console.log(query.sql);
@@ -79,6 +79,10 @@ exports.citycategory = function(req, res){
 exports.view = function(req, res){
     
     var id = req.params.id;
+    var city = req.params.location;
+    var category = req.params.category;
+    var title = req.params.title;
+    var company = req.params.company;
 
     req.getConnection(function(err,connection){
        var query = connection.query('SELECT * FROM jobboard WHERE id = ?',[id],function(err,rows)
@@ -89,7 +93,7 @@ exports.view = function(req, res){
                         console.log("Error Selecting : %s ",err );
                         console.log(query.sql);
         	}else{     
-                    res.render('view',{page_title:"Here's a job for you",data:rows});
+                    res.render('view',{page_title:title+" job at "+company+" in "+city,data:rows});
                 }        
            
          });
