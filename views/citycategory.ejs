@@ -1,4 +1,10 @@
 <%- include layouts/header.ejs %>
+<ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/jobs/<%=data[0].location%>"><%=data[0].location%></a></li>
+        <li><%=data[0].category%></li>
+</ol>
+
 <br>
 <div class="col-md-3">
         <%- include layouts/nav.ejs %>

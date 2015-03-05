@@ -21,9 +21,6 @@ exports.list = function(req, res){
             res.render('jobboard',{page_title:"Pieline.net Job Board - northern tech jobs for the community by the community",data:rows});
           	}
          });
-	//console.log(today);
-	//console.log(month_ago_today);
-        //console.log(query.sql);
     });
   
 };

@@ -1,12 +1,17 @@
 <%- include layouts/header.ejs %>
 
         <div class="view-job">
+        <ol class="breadcrumb">
+	        <li><a href="/">Home</a></li>
+                <li><a href="/jobs/<%=data[0].location%>"><%=data[0].location%></a></li>
+                <li><a href="/jobs/<%=data[0].location%>/<%=data[0].category%>"><%=data[0].category%></a></li>
+                <li class="active"><%=data[0].title%> at <%=data[0].company%></li>
+        </ol>
 
 	<div hidden id="submit-successful" class="alert alert-success">
         	<a href="#" class="close" data-dismiss="alert">&times;</a>
         	<p>Your question was submitted successfully</p>
 	</div>
-        
 	    <h1 class="job-title"><%=data[0].title%> job at <a href="<%=data[0].url%>"><%=data[0].company%></a></h1>
             <p>This is a<strong>
             <% if(data[0].hours==1){  %>                         
