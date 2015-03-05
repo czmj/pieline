@@ -1,20 +1,21 @@
-<button type="button" class="pull-right btn btn-success" data-toggle="modal" data-target="#contact-modal">Questions? Contact this company anonymously</button>
+<button type="button" class="pull-right btn btn-success" data-toggle="modal" data-target="#contact-modal">Don't have the full picture? Ask them a question and we'll publish their response here</button>
     </div>
 
 <div id="contact-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content noshadow">
-         <div class="modal-header"><h4 class="modal-title">Ask a question anonymously</h4></div>
+         <div class="modal-header"><h4 class="modal-title">Find out more about working at <%- data[0].company%></h4></div>
         <form action="/contact/<%- data[0].location%>/<%- data[0].id%>/<%- data[0].title.replace(/[&\/\\#,+()$~%. '":*?<>{}]/g,'-')%>/<%- data[0].company.replace(/[&\/\\#,+()$~%. '":*?<>{}]/g,'-')%>" method="post">
         <div class="modal-body">
                 <div class="form-group">
-                        <label for="question">Question:</label>
-                        <textarea required rows="3" class="form-control" id="question" name="question" placeholder="Enter your question"></textarea>
+                        <label for="question">What would you like to know?</label>
+                        <textarea required rows="3" class="form-control" id="question" name="question" placeholder="Please can you tell me more about"></textarea>
                 </div>
                 <div class="form-group">
-                        <label for="email">Email <span class="subdued">(optional)</span></label>
-                        <a data-toggle="tooltip" data-placement="right" title="If you want, you can give us your email address so we can let you know when your question has been answered. No-one $
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email address">
+                        <label for="email">Let us alert you when they reply?<span class="subdued">(optional)</span></label>
+                        <a data-toggle="tooltip" data-placement="right" title="Give us your email address and we'll let you know when the company responds. No-one else will know it's you. ">Hey! I thought this was anonymous!</a>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="You@YourReallyCoolDomain.com">
+			<p>We hate spam so we promise we'll never spam you. </a>
                 </div>
         <div class="g-recaptcha" data-sitekey="6Ldj0QITAAAAAFHydr_T6uSRvLFr6hVeCzoBMufi"></div>
         </div>
