@@ -52,7 +52,6 @@ exports.citycategory = function(req, res){
 
 	var today = Date.today().toString("yyyy-MM-dd");
 	var month_ago_today = Date.today().addMonths(-1).toString("yyyy-MM-dd");
-
   var city = req.params.location;
   var category = req.params.category;
 
@@ -176,6 +175,106 @@ exports.save = function(req,res){
     });
 };
 
+<<<<<<< HEAD
+exports.feedbackpost = function(req,res){
+var APIkeys = config.get('Pieline.APIkeys');
+	function verifyRecaptcha(key, callback) {
+        	https.get("https://www.google.com/recaptcha/api/siteverify?secret=" + APIkeys.recaptchasecret + "&response=" + APIkeys.recaptchakey, function(res) {
+                	var data = "";
+	                res.on('data', function (chunk) {
+	                        data += chunk.toString();
+	                });
+	                res.on('end', function() {
+        	                try {
+                	                var parsedData = JSON.parse(data);
+                        	        callback(parsedData.success);
+	                        } catch (e) {
+        	                        callback(false);
+	                        }
+	                });
+	        });
+	}
+
+       	verifyRecaptcha(req.body["g-recaptcha-response"], function(success) {
+                	if (success) {
+                        	res.end("Success!");
+	                        // TODO: do registration using params in req.body
+        	        } else {
+                	        res.end("Captcha failed, sorry.");
+                        	// TODO: take them back to the previous page
+	                        // and for the love of everyone, restore their inputs
+        	        }
+        });
+});
+
+
+    var input = JSON.parse(JSON.stringify(req.body));
+    console.log(input);
+    req.getConnection(function (err, connection) {
+
+        if(input.hours==null){
+                hours=0;
+        }
+        if(input.contact_mention==null){
+                contact_mention=0;
+        }
+        if(input.contact_recruiters==null){
+                contact_recruiters=0;
+        }
+        if(input.dateposted==null){
+                dateposted=today;
+        }
+        else{
+             dateposted=input.dateposted;
+        }
+
+        var data = {
+            dateposted    : dateposted,
+            title   : input.title,
+            company   : input.company,
+            location : input.location,
+            hours   : input.hours,
+            category : input.category,
+            contact_mention: input.contact_mention,
+            contact_recruiters: input.contact_recruiters,
+            url: input.url,
+            contact_details: input.contact_det
+            description:input.description,
+
+        };
+
+        var query = connection.query("INSERT INTO jobboard set ? ",data, function(err, rows)
+        {
+
+          if (err)
+              console.log("Error inserting : %s ",err );
+
+          res.redirect('/');
+
+        });
+
+        console.log(query.sql);
+
+    });
+};
+
+
+/*
+exports.delete_jobboard = function(req,res){
+          
+     var vidid = req.params.id;
+    
+     req.getConnection(function (err, connection) {
+        
+        var query = connection.query("DELETE FROM jobboard  WHERE vidid = ? ",[vidid], function(err, rows)
+        {
+            
+             if(err)
+                 console.log("Error deleting : %s ",err );
+            
+             res.redirect('/jobboard');
+             
+=======
 var SECRET="6Ldj0QITAAAAAGAMnsaopoCqQoOFWWXEcvp4nVUg";
 
 // Helper function to make API call to recatpcha and check response
@@ -195,6 +294,7 @@ function verifyRecaptcha(key, callback) {
                                 callback(false);
                         }
                 });
+>>>>>>> e179c0c40c0e1d86a852837e1d0f154f787615a1
         });
 }
 

@@ -44,6 +44,7 @@ else {
     type koneksi : single,pool and request 
 -------------------------------------------*/
 var dbConfig = config.get('Pieline.dbConfig');
+
 app.use(connection(mysql, dbConfig, 'pool'));
 
 
@@ -61,10 +62,21 @@ app.get('/admin/add', jobboard.add);
 app.get('/admin/questions', jobboard.questions);
 app.get('/admin/upcoming', jobboard.upcoming);
 app.post('/admin/add', jobboard.save);
+<<<<<<< HEAD
+
+
+app.feedbackpost('/jobs/:location/:id/contact', jobboard.feedbackpostpost); //Captcha POST function - see https://jaxbot.me/articles/new-nocaptcha-recaptcha-with-node-js-express-12-9-2014
+
+=======
 app.post('/contact/:location/:id/:title/:company', jobboard.contact);
+>>>>>>> e179c0c40c0e1d86a852837e1d0f154f787615a1
 
 app.use(app.router);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+<<<<<<< HEAD
+
+=======
+>>>>>>> e179c0c40c0e1d86a852837e1d0f154f787615a1
