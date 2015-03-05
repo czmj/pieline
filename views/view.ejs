@@ -1,7 +1,18 @@
 <%- include layouts/header.ejs %>
 
-        <div class="view-job">
-            <h1 class="job-title"><%=data[0].title%> job at <a href="<%=data[0].url%>"><%=data[0].company%></a></h1>
+<div class="view-job">
+        <ol class="breadcrumb">
+	        <li><a href="/">Home</a></li>
+                <li><a href="/jobs/<%=data[0].location%>"><%=data[0].location%></a></li>
+                <li><a href="/jobs/<%=data[0].location%>/<%=data[0].category%>"><%=data[0].category%></a></li>
+                <li class="active"><%=data[0].title%> at <%=data[0].company%></li>
+        </ol>
+
+	<div hidden id="submit-successful" class="alert alert-success">
+        	<a href="#" class="close" data-dismiss="alert">&times;</a>
+        	<p>Your question was submitted successfully</p>
+	</div>
+	    <h1 class="job-title"><%=data[0].title%> job at <a href="<%=data[0].url%>"><%=data[0].company%></a></h1>
             <p>This is a<strong>
             <% if(data[0].hours==1){  %>                         
                  Contract
@@ -27,9 +38,11 @@
             <% if(data[0].contact_mention==1){  %>                          
                     <p class="bg-info"><strong>Do feel free to mention</strong> Pieline.net when applying</p>
                 <% } %>
+
 	<br>
+
 <button type="button" class="pull-right btn btn-success" data-toggle="modal" data-target="#contact-modal">Questions? Contact this company anonymously</button>
-        </div>
+    </div>
         
 <%- include layouts/footer.ejs %>
 
@@ -37,16 +50,16 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content noshadow">
          <div class="modal-header"><h4 class="modal-title">Ask a question anonymously</h4></div>
-	<form action="contact" method="post">
+	<form action="/contact/<%- data[0].location%>/<%- data[0].id%>/<%- data[0].title.replace(/[&\/\\#,+()$~%. '":*?<>{}]/g,'-')%>/<%- data[0].company.replace(/[&\/\\#,+()$~%. '":*?<>{}]/g,'-')%>" method="post">
 	<div class="modal-body">
  		<div class="form-group">
     			<label for="question">Question:</label>
-    			<textarea required rows="3" class="form-control" id="question" placeholder="Enter your question"></textarea>
+    			<textarea required rows="3" class="form-control" id="question" name="question" placeholder="Enter your question"></textarea>
   		</div>
   		<div class="form-group">
     			<label for="email">Email <span class="subdued">(optional)</span></label>
 			<a data-toggle="tooltip" data-placement="right" title="If you want, you can give us your email address so we can let you know when your question has been answered. No-one else will be able to see this.">Hey! I thought this was anonymous!</a>
-    			<input type="email" class="form-control" id="email" placeholder="Email address">
+    			<input type="email" class="form-control" id="email" name="email" placeholder="Email address">
  		</div>
 	<div class="g-recaptcha" data-sitekey="6Ldj0QITAAAAAFHydr_T6uSRvLFr6hVeCzoBMufi"></div>
 	</div>
@@ -58,8 +71,19 @@
   </div>
 </div>
 
+
 <script>
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
+
+$( document ).ready(function() {
+	var href=window.location.href.split("?");
+	var status=href[1];
+	if (status==='ok'){
+		$( "#submit-successful" ).slideDown(1000);
+	}else{
+		$( "#submit-successful" ).hide();
+	}		
+});
 </script>

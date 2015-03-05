@@ -1,0 +1,26 @@
+<%- include layouts/header.ejs %>
+
+<h1>Jobs appearing in the next month</h1>
+<br>
+<table class="table">
+  <tr>
+        <th>posted</th>
+        <th>company</th>
+	<th>title</th>
+	<th>location</th>
+        <th>id</th>
+  </tr>
+        <%
+            for(var i = 0;i < data.length;i++) { %>
+                <tr>
+                        <td><%=data[i].dateposted.toString("dd MMM")%></td>
+                        <td><%=data[i].company%></td>
+                        <td><a href="<%=data[i].url%>"><%=data[i].title%></td>
+			<td><%=data[i].location%></td>
+                        <td><%=data[i].id%></td>
+                </tr>
+        <%}%>
+</table>
+
+<%- include layouts/footer.ejs %>
+

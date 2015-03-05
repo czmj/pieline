@@ -1,12 +1,12 @@
 // dynamically activate list items when clicked
 $( document ).ready(function() {
-        var href=window.location.href.split("/");;
+        var href=window.location.href.split("/");
         var city=href[4];
         var category=href[5];
 
         $(".nav").find(".active").removeClass("active");
 
-/*        //select city
+        //select city
         if (city==="Manchester"){
                 $("#Manchester").addClass("active");
         }else if(city==="Sheffield"){
@@ -15,7 +15,7 @@ $( document ).ready(function() {
                 $("#Leeds").addClass("active");
         }else if(city==="Liverpool"){
         	$("#Liverpool").addClass("active");
-	}*/
+	}
 
 	//select category
 	if(category==="Development"){
