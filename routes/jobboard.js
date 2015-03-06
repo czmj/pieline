@@ -244,12 +244,12 @@ req.getConnection(function(err,connection){
 
 exports.upcoming = function(req, res){
 
-        var today = Date.today().toString("yyyy-MM-dd");
+        var tomorrow = Date.today().addDays(1).toString("yyyy-MM-dd");
 	var month_from_today = Date.today().addMonths(1).toString("yyyy-MM-dd");
 
   req.getConnection(function(err,connection){
 
-	var query = connection.query('SELECT * FROM jobboard WHERE dateposted between DATE("' + today + '") AND DATE("' + month_from_today + '")ORDER BY dateposted, id',function(err,rows)
+	var query = connection.query('SELECT * FROM jobboard WHERE dateposted between DATE("' + tomorrow + '") AND DATE("' + month_from_today + '")ORDER BY dateposted, id',function(err,rows)
 
         {
                if(!rows[0]){

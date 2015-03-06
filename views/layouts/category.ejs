@@ -1,9 +1,26 @@
-<ul class="nav nav-tabs col-xs-12 col-md-7">
-  <li id="all" role="presentation"><a href="/jobs/<%=currentlocation%>/">All</a></li>
-  <li id="dev" role="presentation"><a href="/jobs/<%=currentlocation%>/Development">Dev</a></li>
-  <li id="design" role="presentation"><a href="/jobs/<%=currentlocation%>/Design">Design</a></li>
-  <li id="tech" role="presentation"><a href="/jobs/<%=currentlocation%>/Support">Tech</a></li>
-  <li id="business" role="presentation"><a href="/jobs/<%=currentlocation%>/Business">Business</a></li>
-  <li id="comms" role="presentation"><a href="/jobs/<%=currentlocation%>/Communications">Comms</a></li>
-</ul>
+<div class="visible-xs-inline-block dropdown col-xs-2 col-xs-offset-2">
+  <button class="btn btn-default btn-lg dropdown-toggle" type="button" id="catMenu" data-toggle="dropdown" aria-expanded="true">
+    Categories
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="catMenu">
+	  <li><a href="/jobs/<%=currentlocation%>/">All</a></li>
+	  <li><a href="/jobs/<%=currentlocation%>/Development">Dev</a></li>
+	  <li><a href="/jobs/<%=currentlocation%>/Design">Design</a></li>
+	  <li><a href="/jobs/<%=currentlocation%>/Support">Tech</a></li>
+	  <li><a href="/jobs/<%=currentlocation%>/Business">Business</a></li>
+	  <li><a href="/jobs/<%=currentlocation%>/Communications">Comms</a></li>
+  </ul>
+</div>
 
+
+<div class="hidden-xs col-sm-8">
+<ul class="nav nav-tabs">
+  <li id="all"><a href="/jobs/<%=currentlocation%>/">All</a></li>
+  <li id="dev"><a href="/jobs/<%=currentlocation%>/Development">Dev</a></li>
+  <li id="design"><a href="/jobs/<%=currentlocation%>/Design">Design</a></li>
+  <li id="tech"><a href="/jobs/<%=currentlocation%>/Support">Tech</a></li>
+  <li id="business"><a href="/jobs/<%=currentlocation%>/Business">Business</a></li>
+  <li id="comms"><a href="/jobs/<%=currentlocation%>/Communications">Comms</a></li>
+</ul>
+</div>

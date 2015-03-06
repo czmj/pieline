@@ -32,7 +32,5 @@ $( document ).ready(function() {
 		$("#all").addClass("active");
 	}
 
-
-
 });
 

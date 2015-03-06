@@ -2,11 +2,10 @@
 
 <h1>Unsent questions</h1>
 <br>
-<table class="table">
+<table class="table table-striped">
   <tr>
 	<th>job</th>
 	<th>company</th>
-	<th>email</th>
 	<th>question</th>
   </tr>
         <%
@@ -15,7 +14,6 @@
 		<tr>
 			<td><a href="/view/<%=data[i].jobID%>"><%=data[i].jobID%></a></td>
 			<td><%=data[i].company%></td>
-			<td><%=data[i].email%></td>
 			<td><%=data[i].question%></td>
        		</tr>
 		<%}
@@ -24,12 +22,12 @@
 
 <h1>Sent questions</h1>
 <br>
-<table class="table">
+<table class="table table-striped">
   <tr>
         <th>job</th>
         <th>company</th>
-        <th>email</th>
         <th>question</th>
+	<th>answer</th>
   </tr>
         <%
             for(var i = 0;i < data.length;i++) { 
@@ -37,8 +35,8 @@
                 <tr>
                         <td><a href="/view/<%=data[i].jobID%>"><%=data[i].jobID%></a></td>
                         <td><%=data[i].company%></td>
-                        <td><%=data[i].email%></td>
                         <td><%=data[i].question%></td>
+                        <td><%=data[i].answer%></td>
                 </tr>
                 <%}
         }%>

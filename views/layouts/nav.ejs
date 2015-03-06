@@ -1,18 +1,18 @@
-<nav class="navbar navbar-default" role="navigation">
-	<div class="navbar">
-		<a class="navbar-brand">Cities</a>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#cities-nav">
-                <span class="sr-only">Toggle navigation</span>
-        		<span class="icon-bar"></span>
-        		<span class="icon-bar"></span>
-        		<span class="icon-bar"></span>
-            </button>
-        </div>
-
-        <div id="cities-nav" class="collapse navbar-collapse">
-            <ul class="nav nav-pills nav-stacked">
-
-
+<div class="visible-xs-inline-block dropdown col-xs-2">
+  <button class="btn btn-default btn-lg dropdown-toggle" type="button" id="citiesMenu" data-toggle="dropdown" aria-expanded="true">
+    Cities
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="citiesMenu">
+	<li><a href="/jobs/Manchester">Manchester</a></li>
+	<li><a href="/jobs/Sheffield">Sheffield</a></li>
+	<li><a href="/jobs/Liverpool">Liverpool</a></li>
+	<li><a href="/jobs/Leeds">Leeds</a></li>
+  </ul>
+</div>
+<div class="hidden-xs col-sm-2">
+   <div class="well cities-nav">
+	<ul class="nav nav-pills nav-stacked">
                 <% /* EXPERIMENTAL 
 
 		var navarray = {"Sheffield", "Manchester", "Liverpool", Leeds"};
@@ -27,14 +27,10 @@
 
                 <%};}  */%>
 
-				<li id="Manchester" role="presentation"><a href="/jobs/Manchester">Manchester</a></li>
-				<li id="Sheffield" role="presentation"><a href="/jobs/Sheffield">Sheffield</a></li>
-				<li id="Liverpool" role="presentation"><a href="/jobs/Liverpool">Liverpool</a></li>
-				<li id="Leeds" role="presentation"><a href="/jobs/Leeds">Leeds</a></li>
-        			<br>
-	    </ul>
-
-
-        </div><!-- /.navbar-collapse -->
-    </nav>
-
+	<li id="Manchester"><a href="/jobs/Manchester">Manchester</a></li>
+	<li id="Sheffield"><a href="/jobs/Sheffield">Sheffield</a></li>
+	<li id="Liverpool"><a href="/jobs/Liverpool">Liverpool</a></li>
+	<li id="Leeds"><a href="/jobs/Leeds">Leeds</a></li>
+</ul>
+</div>
+</div>

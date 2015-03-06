@@ -1,18 +1,17 @@
 <%- include layouts/header.ejs %>
+<div class="col-md-12">
 <ol class="breadcrumb">
         <li><a href="/">Home</a></li>
 	<li><a href="/jobs/<%=currentlocation%>"><%=currentlocation%></a></li>
         <li class="active"><%=category%></li>
 </ol>
-<br>
-<div class="col-md-3">
-        <%- include layouts/nav.ejs %>
 </div>
+<%- include layouts/nav.ejs %>
 
 <%- include layouts/category.ejs %>
-
-<div class="list-group col-xs-12 col-lg-7">
-        <a href="https://www.bytemark.co.uk/company/employment/" class="list-group-item list-group-item-success">Sponsored link: Bytemark Hosting are hiring in Manchester</a>
+<main class="col-xs-12 col-sm-8">
+	<div class="list-group border-top-0 margin-top">
+	<%- include layouts/sponsored.ejs %>
 
                 <%  if (!data[0]){%>
 			<p class="list-group-item">Sorry, we don't currently have any <%=category.toLowerCase()%> jobs in <%=currentlocation%></p>
@@ -32,7 +31,8 @@
                 </a>
 			<%}}%>
 
-</div>
-
+	</div>
 <%- include layouts/links.ejs %>
+</main>
+
 <%- include layouts/footer.ejs %>

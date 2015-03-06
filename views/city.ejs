@@ -1,18 +1,17 @@
 <%- include layouts/header.ejs %>
+<div class="col-md-12">
 <ol class="breadcrumb">
         <li><a href="/">Home</a></li>
         <li class="active"><%=currentlocation%></li>
 </ol>
-
-
-<br>
-<div class="col-md-3">
-        <%- include layouts/nav.ejs %>
 </div>
+
+<%- include layouts/nav.ejs %>
 
 <%- include layouts/category.ejs %>
 
-<div class="list-group col-xs-12 col-lg-7">
+<main class="col-xs-12 col-sm-8 col-md-8">
+        <div class="list-group border-top-0 margin-top">
         <%- include layouts/sponsored.ejs %>
 
                 <% if (!data[0]){%>
@@ -34,8 +33,8 @@
                 </a>
 
 			<%}}%>
-
-</div>
-
+	</div>
 <%- include layouts/links.ejs %>
+</main>
+
 <%- include layouts/footer.ejs %>
