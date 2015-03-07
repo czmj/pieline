@@ -22,7 +22,7 @@
                 Full Time
             <% } %></strong>
              position in  <strong><%=data[0].location%></strong>.</p>
-            <h3>Are you who they're looking for?</h3>
+            <h2 class="h3">Are you who they're looking for?</h2>
             <p> <%- data[0].description%></p>
             <a id="jobs-ext" class="btn btn-default" href="<%=data[0].url%>" onclick="trackGoal(21)"><strong>See more</strong> on their website</a>
 	<br><br>
@@ -32,7 +32,7 @@
 	</div>
 	<div class="col-xs-12 col-sm-12">
 	    <br><hr>
-	    <h3> Sound like your thing? Here's how you get in touch:</h3>
+	    <h2 class="h3"> Sound like your thing? Here's how you get in touch:</h2>
             <p> <%-data[0].contact_details%></p>
             <% if(data[0].contact_mention==1){  %>                          
                     <p class="bg-info"><strong>Do feel free to mention</strong> Pieline.net when applying</p>
