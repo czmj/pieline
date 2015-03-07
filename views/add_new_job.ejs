@@ -6,21 +6,21 @@
 		<!-- rules defining tags, attributes and classes that are allowed -->
 		<script src="/js/wysihtml/parser_rules/advanced_and_extended.js"></script>
 
-            <form method="post" action="/admin/add">
+            <form method="post" action="/admin/add" class="col-md-12">
                 <div class="form-group">
-                    <label for="title">Job Title: </label> <input type="text" name="title" required>
+                    <label for="title" class="h4">Job Title: </label> <input type="text" name="title" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="company">Company Name: </label> <input type="text" name="company" required>
+                    <label for="company" class="h4">Company Name: </label> <input type="text" name="company" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="location">Location: </label> <input type="text" name="location" required>
+                    <label for="location" class="h4">Location: </label> <input type="text" name="location" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="url">Jobs page URL: </label> <input name="url" required>
+                    <label for="url" class="h4">Jobs page URL: </label> <input name="url" required>
                 </div>
 
 <div id="wysihtml-toolbar" style="display: none;">
@@ -44,9 +44,9 @@
 </div>
                 
                 <div class="form-group">
-                    <label for="description">Job Description: </label><textarea  class="form-control" rows=10 spellcheck="true" name="description" required id="wysihtml-textarea" placeholder="Enter your text ..."></textarea>
+                    <label for="description" class="h4">Job Description: </label><textarea  class="form-control" rows=10 spellcheck="true" name="description" required id="wysihtml-textarea" placeholder="Enter your text ..."></textarea>
 		<br>
-                    <label for="contact_details">How to contact: </label><textarea class="form-control" rows=10 spellcheck="true" name="contact_details" required></textarea>
+                    <label for="contact_details" class="h4">How to contact: </label><textarea class="form-control" rows=10 spellcheck="true" name="contact_details" required></textarea>
                 </div>
                 
                 <div class="btn-group" data-toggle="buttons">
@@ -84,24 +84,24 @@
 				<p>Datepicker doesn't work yet. Input dateposted in the format yyyy-MM-dd.</p>
                 <script>
                         $(document).ready(function() {
-                            //$(".datepicker").datepicker({
-                            //	format:'yyyy-mm-dd'
-                            //});
+                            $(".dateposted").datepicker({
+                            	format:'yyyy-mm-dd'
+                            });
 							
-					var d = new Date();
-					var today = d.toISOString().slice(0,10);
-					document.getElementById('dateposted').placeholder = today;
-					document.getElementById('dateposted').value = today;
+				var d = new Date();
+				var today = d.toISOString().slice(0,10);
+				document.getElementById('dateposted').placeholder = today;
+				document.getElementById('dateposted').value = today;
 
                         });
 						
 
                 </script>
 
-			<input type="text" class="datepicker" name="dateposted" id="dateposted" >
+			<input type="text" name="dateposted" id="dateposted" >
 				<br>
 				<br>
-                <input class="btn btn-success" type="submit" name="submit" value="Post live!">                 
+                <input class="btn btn-success btn-lg" type="submit" name="submit" value="Post live!">                 
                 
             </form>
 
