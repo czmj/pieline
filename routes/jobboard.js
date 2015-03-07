@@ -112,7 +112,7 @@ exports.speculative = function(req, res){
                         console.log("Error Selecting : %s ",err );
                         console.log(query.sql);
                 }else{
-			res.render('speculative',{page_title:"North-West tech companies aceepting speculative applications",data:rows});
+			res.render('speculative',{page_title:"North-West tech companies accepting speculative applications",data:rows});
                 }
 
          });

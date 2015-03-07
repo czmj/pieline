@@ -1,9 +1,10 @@
 <%- include layouts/header.ejs %>
 
+<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+
 <h1>Companies open to speculative applications</h1>
-<br>
-<div class="panel panel-default">
-<div class="panel-heading">Lancaster</div>
+
+<h2 class="h3">Lancaster</h2>
 <div class="list-group">
         <%
             for(var i = 0;i < data.length;i++) {
@@ -13,10 +14,8 @@
 
        <%}%>
 </div>
-</div>
 
-<div class="panel panel-default">
-<div class="panel-heading">Leeds</div>
+<h2 class="h3">Leeds</h2>
 <div class="list-group">
         <%
             for(var i = 0;i < data.length;i++) {
@@ -27,10 +26,8 @@
        <%}%>
 
 </div>
-</div>
 
-<div class="panel panel-default">
-<div class="panel-heading">Liverpool</div>
+<h2 class="h3">Liverpool</h2>
 <div class="list-group">
         <%
             for(var i = 0;i < data.length;i++) {
@@ -41,11 +38,9 @@
        <%}%>
 
 </div>
-</div>
 
 
-<div class="panel panel-default">
-<div class="panel-heading">Manchester</div>
+<h2 class="h3">Manchester</h2>
 <div class="list-group">
 	<%  
             for(var i = 0;i < data.length;i++) {
@@ -56,10 +51,8 @@
        <%}%>
 
 </div>
-</div>
 
-<div class="panel panel-default">
-<div class="panel-heading">Sheffield</div>
+<h2 class="h3">Sheffield</h2>
 <div class="list-group">
         <%
             for(var i = 0;i < data.length;i++) {
@@ -70,9 +63,8 @@
        <%}%>
 
 </div>
+
+<p class="text-right">Tweet us <a id="tweet-spec" href="https://twitter.com/intent/tweet?screen_name=pieline">@pieline</a> to get your company added to this list.</p>
 </div>
-
-Tweet us <a href="https://twitter.com/pieline">@pieline</a> to get your company added to this list.
-
 <%- include layouts/footer.ejs %>
 
