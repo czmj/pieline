@@ -34,7 +34,7 @@ exports.city = function(req, res){
 
   req.getConnection(function(err,connection){
 
-        var query = connection.query('SELECT * FROM jobboard WHERE location = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC ',[city],function(err,rows)
+	var query = connection.query('SELECT j.id, c.company_name AS company, j.title, j.dateposted, l.location_name AS location FROM jobboard_copy2 j INNER JOIN companies_copy c ON j.companyID=c.companyID INNER JOIN locations_copy l ON j.locationID=l.locationID WHERE l.location_name = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC',[city],function(err,rows)
         {
                 if(!rows[0]){
                         res.render('city', {currentlocation:city ,page_title:"Sorry - we don't have any jobs in"+city+" yet",data:0 });
@@ -57,7 +57,7 @@ exports.citycategory = function(req, res){
 
   req.getConnection(function(err,connection){
 
-        var query = connection.query('SELECT id, title, company, category, location, dateposted FROM jobboard WHERE location = ? AND category = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC ',[city,category],function(err,rows)
+        var query = connection.query('SELECT j.id, c.company_name AS company, j.title, j.dateposted, l.location_name AS location, cat.category_name AS category FROM jobboard_copy2 j INNER JOIN companies_copy c ON j.companyID=c.companyID INNER JOIN locations_copy l ON j.locationID=l.locationID INNER JOIN categories_copy cat ON j.categoryID=cat.categoryID WHERE l.location_name = ? AND cat.category_name = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC',[city,category],function(err,rows)
         {
                 if(!rows[0]){
                         res.render('citycategory', { data:0, currentlocation:city, category:category, page_title:"Sorry - we don't have any "+category.toLowerCase()+"  jobs in "+city+"  yet", });
