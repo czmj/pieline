@@ -44,14 +44,14 @@
 </div>
                 
                 <div class="form-group">
-                    <label for="description" class="h4">Job Description: </label><textarea  class="form-control" rows=10 spellcheck="true" name="description" required id="wysihtml-textarea" placeholder="Enter your text ..."></textarea>
+                    <label for="description" class="h4">Job Description: </label><textarea  class="form-control" rows=15 spellcheck="true" name="description" required id="wysihtml-textarea" placeholder="Enter your text ..."></textarea>
 		<br>
-                    <label for="contact_details" class="h4">How to contact: </label><textarea class="form-control" rows=10 spellcheck="true" name="contact_details" required></textarea>
+                    <label for="contact_details" class="h4">How to contact: </label><textarea class="form-control" rows=5 spellcheck="true" name="contact_details" required></textarea>
                 </div>
                 
                 <div class="btn-group" data-toggle="buttons">
                 <label class="btn btn-default active"><input type="radio" name="hours" value="0" checked>Full time</label>
-                <label class="btn btn-default"><input type="radio" name="hours" value="1">Contract</label>
+                <label class="btn btn-default"><input type="radio" name="hours" value="1">Part time</label>
                 </div>
                 
                 <br><br>
@@ -84,9 +84,9 @@
 				<p>Datepicker doesn't work yet. Input dateposted in the format yyyy-MM-dd.</p>
                 <script>
                         $(document).ready(function() {
-                            $(".dateposted").datepicker({
-                            	format:'yyyy-mm-dd'
-                            });
+                            //$(".dateposted").datepicker({
+                            //	format:'yyyy-mm-dd'
+                            //});
 							
 				var d = new Date();
 				var today = d.toISOString().slice(0,10);
@@ -98,7 +98,7 @@
 
                 </script>
 
-			<input type="text" name="dateposted" id="dateposted" >
+			<input type="text" name="dateposted" id="dateposted" value=today placeholder=today>
 				<br>
 				<br>
                 <input class="btn btn-success btn-lg" type="submit" name="submit" value="Post live!">                 

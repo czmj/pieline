@@ -9,7 +9,7 @@ exports.list = function(req, res){
 
   req.getConnection(function(err,connection){
 
-        var query = connection.query('SELECT * FROM jobboard WHERE dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC',function(err,rows)
+        var query = connection.query('SELECT j.id, c.company_name AS company, j.title, j.dateposted, l.location_name AS location FROM jobboard_copy2 j INNER JOIN companies_copy c ON j.companyID=c.companyID INNER JOIN locations_copy l ON j.locationID=l.locationID WHERE dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC',function(err,rows)
         {
                if(!rows[0]){
                         res.status(404);
