@@ -205,24 +205,29 @@ function verifyRecaptcha(key, callback) {
 exports.contact = function(req,res){
 	var input = JSON.parse(JSON.stringify(req.body));
 	var key = "6Ldj0QITAAAAAFHydr_T6uSRvLFr6hVeCzoBMufi";
-	var id = req.params.id;
-	var location = req.params.location;
-	var title = req.params.title;
-	var company= req.params.company;
 	verifyRecaptcha(req.body["g-recaptcha-response"], function(success) {
 		if (success) {
 			req.getConnection(function (err, connection) {
-				var data = {
-		        	    	jobID    : req.params.id,
-					company: req.params.company,
-					email: input.email,
-            				question:input.question,
-        			};
-				var query = connection.query("INSERT INTO questions set ? ",data, function(err, rows){
-					if (err) console.log("Error inserting : %s ",err );
+				var location = req.params.location;
+				var title = req.params.title;
+				var company= req.params.company;
+				var id= req.params.id;
+				
+				connection.query("select companyID from jobboard_copy2 where id=?",id, function(err, rows){
+
+					var data = {
+			        	    	jobID    : id,
+						companyID: rows[0].companyID,
+						email: input.email,
+            					question:input.question,
+        				};
+
+					connection.query("INSERT INTO questions set ? ",data, function(err, rows){
+						if (err) console.log("Error inserting : %s ",err );
+					});
+					res.redirect('jobs/'+location+'/'+id+'/'+title+'-at-'+company+'?ok');
 				});
 			});
-		res.redirect('jobs/'+location+'/'+id+'/'+title+'-at-'+company+'?ok');
 
 		} else {
 			res.end('Captcha failed, sorry')
@@ -232,7 +237,7 @@ exports.contact = function(req,res){
 exports.questions = function(req, res){
 
 req.getConnection(function(err,connection){
-       var query = connection.query('SELECT * FROM questions ORDER BY questionID',function(err,rows)
+       var query = connection.query('SELECT q.*, c.company_name AS company FROM questions q INNER JOIN companies_copy c ON q.companyID=c.companyID ORDER BY questionID',function(err,rows)
         {
                 if(!rows[0]){
                         res.status(404);
@@ -254,7 +259,7 @@ exports.upcoming = function(req, res){
 
   req.getConnection(function(err,connection){
 
-	var query = connection.query('SELECT * FROM jobboard WHERE dateposted between DATE("' + tomorrow + '") AND DATE("' + month_from_today + '")ORDER BY dateposted, id',function(err,rows)
+	var query = connection.query('SELECT j.*, c.company_name AS company, l.location_name AS location, cat.category_name AS category FROM jobboard_copy2 j INNER JOIN companies_copy c ON j.companyID=c.companyID INNER JOIN locations_copy l ON j.locationID=l.locationID INNER JOIN categories_copy cat ON j.categoryID=cat.categoryID WHERE dateposted between DATE("' + tomorrow + '") AND DATE("' + month_from_today + '")ORDER BY dateposted, id',function(err,rows)
 
         {
                if(!rows[0]){
