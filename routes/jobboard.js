@@ -79,7 +79,7 @@ exports.view = function(req, res){
 	var id = req.params.id;    
 
     req.getConnection(function(err,connection){
-       var query = connection.query('SELECT * FROM jobboard WHERE id = ?',[id],function(err,rows)
+       var query = connection.query('SELECT j.*, c.company_name AS company, l.location_name AS location, cat.category_name AS category FROM jobboard_copy2 j INNER JOIN companies_copy c ON j.companyID=c.companyID INNER JOIN locations_copy l ON j.locationID=l.locationID INNER JOIN categories_copy cat ON j.categoryID=cat.categoryID WHERE id = ?',[id],function(err,rows)
         {	    
         	if(!rows[0]){
                         res.status(404);
@@ -127,8 +127,8 @@ exports.save = function(req,res){
     
     var input = JSON.parse(JSON.stringify(req.body));
     console.log(input);
-    req.getConnection(function (err, connection) {
-	
+    req.getConnection(function(err,connection){
+
 	if(input.hours==null){
 		hours=0;
 	}
@@ -148,31 +148,36 @@ exports.save = function(req,res){
         var data = {
             dateposted    : dateposted,
             title   : input.title,
-            company   : input.company,
-            location : input.location,
             hours   : input.hours,
-            category : input.category,
             contact_mention: input.contact_mention,
             contact_recruiters: input.contact_recruiters,
             url: input.url,
             contact_details: input.contact_details,
             description:input.description,
+	    categoryID: input.category;
         
         };
-        
-        var query = connection.query("INSERT INTO jobboard set ? ",data, function(err, rows)
-        {
-  
-          if (err)
-              console.log("Error inserting : %s ",err );
-         
-          res.redirect('/');
+	var company = input.company;
+	var location = input.location;
+
+        connection.query("SELECT locationID from locations_copy where location_name=?",[location], function(err, rows){
+	        if (err) throw err;
+		var locationID=rows[0].locationID;
+		console.log(locationID);
+
+		connection.query("SELECT companyID from companies_copy where company_name=?",[company], function(err, rows){
+		        if (err) throw err;
+			var companyID=rows[0].companyID;
+			console.log(companyID);
+   		
+			connection.query("INSERT INTO jobboard_copy2 set ?, companyID=?,locationID=? ",[data,companyID,locationID], function(err, rows){  
+		        	if (err) throw err;
+          			res.redirect('/');
           
-        });
-        
-        console.log(query.sql);
-    
-    });
+  			});
+		});
+	});
+});
 };
 
 var SECRET="6Ldj0QITAAAAAGAMnsaopoCqQoOFWWXEcvp4nVUg";
