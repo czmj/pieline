@@ -154,27 +154,27 @@ exports.save = function(req,res){
             url: input.url,
             contact_details: input.contact_details,
             description:input.description,
-	    categoryID: input.category;
+	    categoryID: input.category
         
         };
 	var company = input.company;
 	var location = input.location;
 
-        connection.query("SELECT locationID from locations_copy where location_name=?",[location], function(err, rows){
+	connection.query("INSERT INTO locations_copy(location_name) VALUES(?) ON DUPLICATE KEY UPDATE locationID=LAST_INSERT_ID(locationID)",[location], function(err, rows){
 	        if (err) throw err;
-		var locationID=rows[0].locationID;
+		var locationID=rows.insertId
 		console.log(locationID);
 
-		connection.query("SELECT companyID from companies_copy where company_name=?",[company], function(err, rows){
+		connection.query("INSERT INTO companies_copy(company_name,locationID) VALUES(?,?) ON DUPLICATE KEY UPDATE companyID=LAST_INSERT_ID(companyID)",[company,locationID], function(err, rows){
 		        if (err) throw err;
-			var companyID=rows[0].companyID;
+			var companyID=rows.insertId
 			console.log(companyID);
    		
-			connection.query("INSERT INTO jobboard_copy2 set ?, companyID=?,locationID=? ",[data,companyID,locationID], function(err, rows){  
+			var query=connection.query("INSERT INTO jobboard_copy2 set ?, companyID=?,locationID=? ",[data,companyID,locationID], function(err, rows){  
 		        	if (err) throw err;
           			res.redirect('/');
-          
   			});
+          		console.log(query.sql);
 		});
 	});
 });
