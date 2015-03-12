@@ -170,7 +170,7 @@ exports.save = function(req,res){
 			var companyID=rows.insertId
 			console.log(companyID);
    		
-			var query=connection.query("INSERT INTO jobboard_copy2 set ?, companyID=?,locationID=? ",[data,companyID,locationID], function(err, rows){  
+			var query=connection.query("INSERT INTO jobboard set ?, companyID=?,locationID=? ",[data,companyID,locationID], function(err, rows){  
 		        	if (err) throw err;
           			res.redirect('/');
   			});

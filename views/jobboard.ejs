@@ -7,8 +7,11 @@
 <%- include layouts/nav.ejs %>
 
 <main class="col-xs-12 col-sm-8">
+
 	<div class="list-group margin-top">
 	<%- include layouts/sponsored.ejs %>
+        <%- include layouts/filter.ejs %>
+        <div class="searchable border-top-0">
         <%  var title
           	for(var i = 0;i < data.length;i++) { 
                 title=data[i].title.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'-');
@@ -26,7 +29,7 @@
 		<!--<span class="badge"><%=data[i].dateposted.addDays(30).toString("d MMM")%></span>-->
         </a>
 	<%}%>
-
+	</div>
 	</div>
 <%- include layouts/links.ejs %>
 </main>

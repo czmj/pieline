@@ -13,11 +13,20 @@ body {
 	background:#fff !important;
 }
 .list-group{
-	font-size: 1em !important;
+	font-size: 11pt;
+}
+.list-group-search{
+	border-radius:0 !important;
+	width:100% !important;
+}
+
+.border-top-0>:first-child{
+	border-top-left-radius:0 !important;
+	border-top-right-radius:0 !important;
 }
 
 @media (min-width: 768px){
-.border-top-0>:first-child{
+.list-group-top>:first-child{
 	border-top-left-radius: 0 !important;
 	border-top-right-radius: 0 !important;
 }

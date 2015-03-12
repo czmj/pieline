@@ -32,5 +32,22 @@ $( document ).ready(function() {
 		$("#all").addClass("active");
 	}
 
+    (function ($) {
+
+        $('#filter').keyup(function () {
+
+            var rex = new RegExp($(this).val(), 'i');
+            $('.searchable a').hide();
+            $('.searchable a').filter(function () {
+                return rex.test($(this).text());
+            }).show();
+
+        })
+
+    }(jQuery));
+
 });
+
+
+
 

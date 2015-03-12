@@ -2,12 +2,16 @@
 
 <h1>Unsent questions</h1>
 <br>
+
 <table class="table table-striped">
+<thead>
   <tr>
 	<th>job</th>
 	<th>company</th>
 	<th>question</th>
   </tr>
+</thead>
+<tbody>
         <%
             for(var i = 0;i < data.length;i++) { 
 		if(data[i].sent===0){%>
@@ -18,6 +22,7 @@
        		</tr>
 		<%}
 	}%>
+</tbody>
 </table>
 
 <h1>Sent questions</h1>
@@ -43,4 +48,3 @@
 </table>
 
 <%- include layouts/footer.ejs %>
-

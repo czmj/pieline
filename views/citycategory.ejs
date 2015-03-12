@@ -7,12 +7,12 @@
 </ol>
 </div>
 <%- include layouts/nav.ejs %>
-
 <%- include layouts/category.ejs %>
 <main class="col-xs-12 col-sm-8">
-	<div class="list-group border-top-0 margin-top">
+	<div class="list-group list-group-top margin-top">
 	<%- include layouts/sponsored.ejs %>
-
+	<%- include layouts/filter.ejs %>
+	<div class="searchable border-top-0">
                 <%  if (!data[0]){%>
 			<p class="list-group-item">Sorry, we don't currently have any <%=category.toLowerCase()%> jobs in <%=currentlocation%></p>
 		<% }else{
@@ -30,7 +30,7 @@
                     at <%=data[i].company%>
                 </a>
 			<%}}%>
-
+	</div>
 	</div>
 <%- include layouts/links.ejs %>
 </main>
