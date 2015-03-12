@@ -104,7 +104,7 @@ exports.add = function(req, res){
 
 exports.speculative = function(req, res){
     req.getConnection(function(err,connection){
-       var query = connection.query('SELECT * FROM companies WHERE speculative=1 ORDER BY company_name',function(err,rows)
+       var query = connection.query('SELECT * FROM companies WHERE speculative=1 AND homepage is NOT NULL ORDER BY company_name',function(err,rows)
         {
                 if(!rows[0]){
                         res.status(404);
