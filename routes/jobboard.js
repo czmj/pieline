@@ -9,7 +9,7 @@ exports.list = function(req, res){
 
   req.getConnection(function(err,connection){
 
-        var query = connection.query('SELECT j.id, c.company_name AS company, j.title, j.dateposted, l.location_name AS location FROM jobboard_copy2 j INNER JOIN companies_copy c ON j.companyID=c.companyID INNER JOIN locations_copy l ON j.locationID=l.locationID WHERE dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC',function(err,rows)
+        var query = connection.query('SELECT j.id, c.company_name AS company, j.title, j.dateposted, l.location_name AS location FROM jobboard j INNER JOIN companies c ON j.companyID=c.companyID INNER JOIN locations l ON j.locationID=l.locationID WHERE dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC',function(err,rows)
         {
                if(!rows[0]){
                         res.status(404);
@@ -34,7 +34,7 @@ exports.city = function(req, res){
 
   req.getConnection(function(err,connection){
 
-	var query = connection.query('SELECT j.id, c.company_name AS company, j.title, j.dateposted, l.location_name AS location FROM jobboard_copy2 j INNER JOIN companies_copy c ON j.companyID=c.companyID INNER JOIN locations_copy l ON j.locationID=l.locationID WHERE l.location_name = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC',[city],function(err,rows)
+	var query = connection.query('SELECT j.id, c.company_name AS company, j.title, j.dateposted, l.location_name AS location FROM jobboard j INNER JOIN companies c ON j.companyID=c.companyID INNER JOIN locations l ON j.locationID=l.locationID WHERE l.location_name = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC',[city],function(err,rows)
         {
                 if(!rows[0]){
                         res.render('city', {currentlocation:city ,page_title:"Sorry - we don't have any jobs in"+city+" yet",data:0 });
@@ -57,7 +57,7 @@ exports.citycategory = function(req, res){
 
   req.getConnection(function(err,connection){
 
-        var query = connection.query('SELECT j.id, c.company_name AS company, j.title, j.dateposted, l.location_name AS location, cat.category_name AS category FROM jobboard_copy2 j INNER JOIN companies_copy c ON j.companyID=c.companyID INNER JOIN locations_copy l ON j.locationID=l.locationID INNER JOIN categories_copy cat ON j.categoryID=cat.categoryID WHERE l.location_name = ? AND cat.category_name = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC',[city,category],function(err,rows)
+        var query = connection.query('SELECT j.id, c.company_name AS company, j.title, j.dateposted, l.location_name AS location, cat.category_name AS category FROM jobboard j INNER JOIN companies c ON j.companyID=c.companyID INNER JOIN locations l ON j.locationID=l.locationID INNER JOIN categories cat ON j.categoryID=cat.categoryID WHERE l.location_name = ? AND cat.category_name = ? AND dateposted between DATE("' + month_ago_today + '") AND DATE("' + today + '") ORDER BY dateposted DESC, id DESC',[city,category],function(err,rows)
         {
                 if(!rows[0]){
                         res.render('citycategory', { data:0, currentlocation:city, category:category, page_title:"Sorry - we don't have any "+category.toLowerCase()+"  jobs in "+city+"  yet", });
@@ -79,7 +79,7 @@ exports.view = function(req, res){
 	var id = req.params.id;    
 
     req.getConnection(function(err,connection){
-       var query = connection.query('SELECT j.*, c.company_name AS company, l.location_name AS location, cat.category_name AS category FROM jobboard_copy2 j INNER JOIN companies_copy c ON j.companyID=c.companyID INNER JOIN locations_copy l ON j.locationID=l.locationID INNER JOIN categories_copy cat ON j.categoryID=cat.categoryID WHERE id = ?',[id],function(err,rows)
+       var query = connection.query('SELECT j.*, c.company_name AS company, l.location_name AS location, cat.category_name AS category FROM jobboard j INNER JOIN companies c ON j.companyID=c.companyID INNER JOIN locations l ON j.locationID=l.locationID INNER JOIN categories cat ON j.categoryID=cat.categoryID WHERE id = ?',[id],function(err,rows)
         {	    
         	if(!rows[0]){
                         res.status(404);
@@ -160,12 +160,12 @@ exports.save = function(req,res){
 	var company = input.company;
 	var location = input.location;
 
-	connection.query("INSERT INTO locations_copy(location_name) VALUES(?) ON DUPLICATE KEY UPDATE locationID=LAST_INSERT_ID(locationID)",[location], function(err, rows){
+	connection.query("INSERT INTO locations(location_name) VALUES(?) ON DUPLICATE KEY UPDATE locationID=LAST_INSERT_ID(locationID)",[location], function(err, rows){
 	        if (err) throw err;
 		var locationID=rows.insertId
 		console.log(locationID);
 
-		connection.query("INSERT INTO companies_copy(company_name,locationID) VALUES(?,?) ON DUPLICATE KEY UPDATE companyID=LAST_INSERT_ID(companyID)",[company,locationID], function(err, rows){
+		connection.query("INSERT INTO companies(company_name,locationID) VALUES(?,?) ON DUPLICATE KEY UPDATE companyID=LAST_INSERT_ID(companyID)",[company,locationID], function(err, rows){
 		        if (err) throw err;
 			var companyID=rows.insertId
 			console.log(companyID);
@@ -213,7 +213,7 @@ exports.contact = function(req,res){
 				var company= req.params.company;
 				var id= req.params.id;
 				
-				connection.query("select companyID from jobboard_copy2 where id=?",id, function(err, rows){
+				connection.query("select companyID from jobboard where id=?",id, function(err, rows){
 
 					var data = {
 			        	    	jobID    : id,
@@ -237,7 +237,7 @@ exports.contact = function(req,res){
 exports.questions = function(req, res){
 
 req.getConnection(function(err,connection){
-       var query = connection.query('SELECT q.*, c.company_name AS company FROM questions q INNER JOIN companies_copy c ON q.companyID=c.companyID ORDER BY questionID',function(err,rows)
+       var query = connection.query('SELECT q.*, c.company_name AS company FROM questions q INNER JOIN companies c ON q.companyID=c.companyID ORDER BY questionID',function(err,rows)
         {
                 if(!rows[0]){
                         res.status(404);
@@ -259,7 +259,7 @@ exports.upcoming = function(req, res){
 
   req.getConnection(function(err,connection){
 
-	var query = connection.query('SELECT j.*, c.company_name AS company, l.location_name AS location, cat.category_name AS category FROM jobboard_copy2 j INNER JOIN companies_copy c ON j.companyID=c.companyID INNER JOIN locations_copy l ON j.locationID=l.locationID INNER JOIN categories_copy cat ON j.categoryID=cat.categoryID WHERE dateposted between DATE("' + tomorrow + '") AND DATE("' + month_from_today + '")ORDER BY dateposted, id',function(err,rows)
+	var query = connection.query('SELECT j.*, c.company_name AS company, l.location_name AS location, cat.category_name AS category FROM jobboard j INNER JOIN companies c ON j.companyID=c.companyID INNER JOIN locations l ON j.locationID=l.locationID INNER JOIN categories cat ON j.categoryID=cat.categoryID WHERE dateposted between DATE("' + tomorrow + '") AND DATE("' + month_from_today + '")ORDER BY dateposted, id',function(err,rows)
 
         {
                if(!rows[0]){
