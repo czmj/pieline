@@ -79,7 +79,7 @@ exports.view = function(req, res){
 	var id = req.params.id;    
 
     req.getConnection(function(err,connection){
-       var query = connection.query('SELECT j.*, c.company_name AS company, l.location_name AS location, cat.category_name AS category FROM jobboard j INNER JOIN companies c ON j.companyID=c.companyID INNER JOIN locations l ON j.locationID=l.locationID INNER JOIN categories cat ON j.categoryID=cat.categoryID WHERE id = ?',[id],function(err,rows)
+       var query = connection.query('SELECT j.*, q.*, c.company_name AS company, l.location_name AS location, cat.category_name AS category FROM jobboard j INNER JOIN companies c ON j.companyID=c.companyID INNER JOIN locations l ON j.locationID=l.locationID INNER JOIN categories cat ON j.categoryID=cat.categoryID LEFT JOIN questions q ON j.id=q.jobID WHERE id=?',[id],function(err,rows)
         {	    
         	if(!rows[0]){
                         res.status(404);

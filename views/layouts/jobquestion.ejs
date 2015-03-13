@@ -1,31 +1,37 @@
-<p>Don't have the full picture? Anonymously ask this employer a question and we'll publish their response here.</p>
-<button id="ask" type="button" class="btn btn-success" data-toggle="modal" data-target="#contact-modal">Ask a question</button>
+<h2 class="h3">Don't have the full picture? <br><small>Anonymously ask this employer a question and we'll publish their response here.</small></h2>
+<br>
+<%  for(var i = 0;i < data.length;i++) {
+	if(data[i].question){%>
+		<h3 class="h4 text-right"><%=data[i].question%></h3>
 
-<div id="contact-modal" class="modal fade text-left" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content noshadow">
-         <div class="modal-header"><h3 class="modal-title h4">Find out more about working at <%- data[0].company%></h3></div>
-        <form action="/contact/<%- data[0].location%>/<%- data[0].id%>/<%- data[0].title.replace(/[&\/\\#,+()$~%. '":*?<>{}]/g,'-')%>/<%- data[0].company.replace(/[&\/\\#,+()$~%. '":*?<>{}]/g,'-')%>" method="post">
-        <div class="modal-body">
-                <div class="form-group">
-                        <label for="question" class="h4">What would you like to know?</label>
-                        <textarea required rows="3" class="form-control" id="question" name="question" placeholder="Please can you tell me more about"></textarea>
-                </div>
-                <div class="form-group">
-                        <label for="email" class="h4">Let us email you when they reply? <small>(optional) <a data-toggle="tooltip" data-placement="right" title="Give us your email address and we'll let you know when the company responds. No-one else will know it's you. ">Hey! I thought this was anonymous!</a></small></label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="You@YourReallyCoolDomain.com">
-			<p class="text-right">We hate spam so we promise we'll never spam you. </a>
-                </div>
-        <div class="g-recaptcha" data-sitekey="6Ldj0QITAAAAAFHydr_T6uSRvLFr6hVeCzoBMufi"></div>
+		<% if(data[i].answer){%>
+			<blockquote class="blockquote-reverse">
+				<p><%=data[i].answer%></p>
+				<footer><%=data[i].company%>
+	       		</blockquote>
+			<br>
+		<%}else{%>
+			<p class="text-right">This question hasn't been answered yet.</p><br>
+		<%}
+	}
+}%>
+<% if(data[0].question){%>
+	<hr>
+	<h3>Find out more about working at <%- data[0].company%></h3>
+<%}%>
+<form action="/contact/<%- data[0].location%>/<%- data[0].id%>/<%- data[0].title.replace(/[&\/\\#,+()$~%. '":*?<>{}]/g,'-')%>/<%- data[0].company.replace(/[&\/\\#,+()$~%. '":*?<>{}]/g,'-')%>" method="post">
+	<div class="form-group">
+        	<label for="question"><h4>What would you like to know?</h4></label>
+                <textarea required rows="3" class="form-control" id="question" name="question" placeholder="Please can you tell me more about"></textarea>
+	</div>
+        <div class="form-group">
+        	<label for="email"><h4>Let us email you when they reply? <small>(optional)<a data-toggle="tooltip" data-placement="right" title="Give us your email address and we'll let you know when the company responds. No-one else will know it's you."> Hey! I thought this was anonymous!</a></small></h4></label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="You@YourReallyCoolDomain.com">
+		<p class="text-right">We hate spam so we promise we'll never spam you. </a>
         </div>
-         <div class="modal-footer">
-                <button type="submit" id="submit-contact" class="btn btn-primary">Submit</a>
-         </div>
-        </form>
-    </div>
-  </div>
-</div>
-
+        <div class="g-recaptcha" data-sitekey="6Ldj0QITAAAAAFHydr_T6uSRvLFr6hVeCzoBMufi"></div><br>
+        <button type="submit" id="submit-contact" class="btn btn-success">Submit</a>
+</form>
 
 
 <script>

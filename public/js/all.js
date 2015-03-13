@@ -1,5 +1,6 @@
 // dynamically activate list items when clicked
 $( document ).ready(function() {
+	//TODO: do this with req.params instead
         var href=window.location.href.split("/");
         var city=href[4];
         var category=href[5];
@@ -32,6 +33,7 @@ $( document ).ready(function() {
 		$("#all").addClass("active");
 	}
 
+	//search box function
     (function ($) {
 
         $('#filter').keyup(function () {
@@ -43,11 +45,5 @@ $( document ).ready(function() {
             }).show();
 
         })
-
     }(jQuery));
-
 });
-
-
-
-

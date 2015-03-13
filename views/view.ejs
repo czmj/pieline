@@ -13,9 +13,8 @@
         	<a href="#" class="close" data-dismiss="alert">&times;</a>
         	<p>Your question was submitted successfully</p>
 	</div>
-	<div class="row">
-	<div class="col col-sm-12">
-		<h1 class="job-title"><%=data[0].title%> job at <a onclick="trackGoal(21)" href="<%=data[0].url%>"><%=data[0].company%></a></h1>
+	<div class="col-sm-12">
+		<h1><%=data[0].title%> job at <a onclick="piwikTracker.trackGoal(21)" href="<%=data[0].url%>"><%=data[0].company%></a></h1>
 	        <br>    
 		<p>This is a<strong>
         	    <% if(data[0].hours==1){  %>                         
@@ -26,12 +25,10 @@
         	     position in  <strong><%=data[0].location%></strong>.</p>
         	<h2 class="h3">Are you who they're looking for?</h2>
             	<p> <%- data[0].description%></p>
-	</div>
-	</div>
-	<br>
-        <a id="jobs-ext" class="btn btn-default" href="<%=data[0].url%>" onclick="trackGoal(21)"><strong>See more</strong> on their website</a>
+		<a id="jobs-ext" class="btn btn-default" href="<%=data[0].url%>" onclick="piwikTracker.trackGoal(21)"><strong>See more</strong> on their website</a>
+      	</div>
+	<div class="col-sm-12">
 	<hr>
-	<div class="text-right col-xs-12 col-sm-7 col-sm-offset-5">
 	     <%- include layouts/jobquestion.ejs %>
 	</div>
 	<div class="col-xs-12 col-sm-12">
