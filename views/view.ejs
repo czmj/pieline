@@ -17,14 +17,15 @@
 		<h1><%=data[0].title%> job at <%=data[0].company%></h1>
 	</div>
 	<div class="col-sm-12 col-lg-5 col-md-3 col-md-offset-1">
+	<br class="visible-lg-inline-block">
 	<div class="row">
+        	    <div class="h4 col-lg-6 col-md-12 col-sm-6"><img class="icon" src="/img/location.svg"> <%=data[0].location%></div>
         	    <div class="h4 col-lg-6 col-md-12 col-sm-6"><img class="icon" src="/img/clock.svg">
         	    <% if(data[0].hours==1){  %>                         
         	         Part Time
         	    <% }else{ %>
         	        Full Time
         	    <% } %></div>
-        	    <div class="h4 col-lg-6 col-md-12 col-sm-6"><img class="icon" src="/img/location.svg"> <%=data[0].location%></div>
 	</div>
 	</div>
 	<div class="col-sm-12 col-md-8">
