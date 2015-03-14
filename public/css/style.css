@@ -3,13 +3,15 @@ body {
   padding-bottom: 40px;
 
 }
-
+.icon{
+	max-width:35px;
+	margin-right:10px;
+}
     
 .noshadow {
     box-shadow: none !important;
 }
-.cities-nav{
-	padding:10% !important;
+.white-well{
 	background:#fff !important;
 }
 .list-group{
