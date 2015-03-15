@@ -10,6 +10,7 @@
 	<th>job</th>
 	<th>company</th>
 	<th>question</th>
+	<th></th>
   </tr>
 </thead>
 <tbody>
@@ -19,7 +20,15 @@
 		<tr>
 			<td><a href="/view/<%=data[i].jobID%>"><%=data[i].jobID%></a></td>
 			<td><%=data[i].company%></td>
-			<td><%=data[i].question%></td>
+			<td>	<%=data[i].question%> </td>
+			<td>
+			<form class="form-inline text-right">
+			<div class="form-group">
+				<button class="btn btn-default" disabled>Sent</button>
+			</div>
+			</form>
+			</td>
+
        		</tr>
 		<%}
 	}%>
