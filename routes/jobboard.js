@@ -254,12 +254,11 @@ req.getConnection(function(err,connection){
 
 exports.upcoming = function(req, res){
 
-        var tomorrow = Date.today().addDays(1).toString("yyyy-MM-dd");
-	var month_from_today = Date.today().addMonths(1).toString("yyyy-MM-dd");
+	var today = Date.today().toString("yyyy-MM-dd");
 
   req.getConnection(function(err,connection){
 
-	var query = connection.query('SELECT j.*, c.company_name AS company, l.location_name AS location, cat.category_name AS category FROM jobboard j INNER JOIN companies c ON j.companyID=c.companyID INNER JOIN locations l ON j.locationID=l.locationID INNER JOIN categories cat ON j.categoryID=cat.categoryID WHERE dateposted between DATE("' + tomorrow + '") AND DATE("' + month_from_today + '")ORDER BY dateposted, id',function(err,rows)
+	var query = connection.query('SELECT j.*, c.company_name AS company, l.location_name AS location, cat.category_name AS category FROM jobboard j INNER JOIN companies c ON j.companyID=c.companyID INNER JOIN locations l ON j.locationID=l.locationID INNER JOIN categories cat ON j.categoryID=cat.categoryID WHERE dateposted > DATE("' + today + '") ORDER BY dateposted, id',function(err,rows)
 
         {
                if(!rows[0]){
@@ -269,7 +268,7 @@ exports.upcoming = function(req, res){
                         console.log(query.sql);
 
                 }else{
-            res.render('upcoming',{page_title:"Jobs appearing in the next 30 days",data:rows});
+            res.render('upcoming',{page_title:"Jobs appearing in the future",data:rows});
                 }
          });
     });

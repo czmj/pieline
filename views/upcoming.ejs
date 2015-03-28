@@ -1,6 +1,6 @@
 <%- include layouts/header.ejs %>
-
-<h1>Jobs appearing in the next month</h1>
+<div class ="col-md-12">
+<h1>Jobs appearing in the future</h1>
 <br>
 <table class="table">
   <tr>
@@ -17,10 +17,10 @@
                         <td><%=data[i].company%></td>
                         <td><a href="<%=data[i].url%>"><%=data[i].title%></td>
 			<td><%=data[i].location%></td>
-                        <td><%=data[i].id%></td>
+                        <td><a href="/view/<%=data[i].id%>"><%=data[i].id%></a></td>
                 </tr>
         <%}%>
 </table>
-
+</div>
 <%- include layouts/footer.ejs %>
 
